@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<ProcessStuff>
+	<Entity>ProcessStuff</Entity>
+	<ActionList>
+		<Action>
+			<Command>CollectStuff</Command>
+			<Type>Init</Type>
+			<Id>StuffId</Id>
+			<InitMapList type="list">
+				<InitMap name="StuffId">StuffId</InitMap>
+				<InitMap name="Description">Description</InitMap>
+				<InitMap name="Comments">Comments</InitMap>
+			</InitMapList>
+		</Action>
+		<Action>
+			<Command>UpdateStuff</Command>
+			<Type>Update ProcessStuff</Type>
+			<MapList type="list">
+				<Map name="Description"/>
+				<Map name="Comments"/>
+			</MapList>
+		</Action>
+		<Action>
+			<Command>EliminateStuff</Command>
+			<Type>Update ProcessStuff</Type>
+			<MapList type="list">
+				<Map name="NewStatus">Status</Map>
+			</MapList>
+			<SetPropertyList>
+				<SetProperty>
+					<Name>Status</Name>
+					<Value>Eliminated</Value>
+				</SetProperty>
+			</SetPropertyList>
+		</Action>
+	</ActionList>
+</ProcessStuff>

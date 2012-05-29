@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ContextPolicy>
+	<Entity>Context</Entity>
+	<ActionList>
+		<Action>
+			<Command>CreateContext</Command>
+			<Type>Init</Type>
+			<Id>Context</Id>
+			<InitMapList type="list">
+				<InitMap name="Context">Context</InitMap>
+				<InitMap name="Comments">Comments</InitMap>
+			</InitMapList>
+		</Action>
+	</ActionList>
+</ContextPolicy>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<GTDComponents>
+	<ComponentList>
+		<Component>
+			<Name>RealSMA - Getting Things Done</Name>
+			<Type>Server</Type>
+			<ResourceType>WebService</ResourceType>
+			<Debug>N</Debug>
+			<AssetsPath>www</AssetsPath>
+			<MasterTemplate>master-template.html</MasterTemplate>
+			<ComponentStoreFile>DataConfig.xml</ComponentStoreFile>
+			<DefaultDataSource>Test DB</DefaultDataSource>
+			<ResourceFile>Resources.xml</ResourceFile>
+			<CommandFile>Commands.xml</CommandFile>
+			<EventFile>Events.xml</EventFile>
+			<EntityFile>Entities.xml</EntityFile>
+			<ViewProjectionFile>Projection.xml</ViewProjectionFile>
+			<AggregateDataSource>Test DB</AggregateDataSource>
+			<AggregateList>
+				<Aggregate> <Name>ProcessStuff</Name> <File>aggregates/ProcessStuff.xml</File> </Aggregate>
+				<Aggregate> <Name>ProcessAction</Name> <File>aggregates/ProcessAction.xml</File> </Aggregate>
+				<Aggregate> <Name>SomeDayPolicy</Name> <File>aggregates/SomeDayPolicy.xml</File> </Aggregate>
+				<Aggregate> <Name>ContextPolicy</Name> <File>aggregates/ContextPolicy.xml</File> </Aggregate>
+			</AggregateList>
+			<!-- Connectors to Web Service -->
+			<ConnectorList>
+				<Connector id="http">
+					<Name>Any</Name>
+					<Type>In</Type>
+					<Transport>http</Transport>
+					<Address>Any</Address>
+					<Port>8181</Port>
+				</Connector>
+			</ConnectorList>
+		</Component>
+	</ComponentList>
+</GTDComponents>

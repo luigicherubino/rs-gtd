@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<GTDEvents>
+	<MessageSetList>
+		<MessageSet>
+			<Name>GTD Events</Name>
+			<Type>Event</Type>
+			<MessageList>
+				<Message> <Name>StuffCollected</Name>
+					<PropertyList>
+						<Property>
+							<Name>StuffId</Name>
+						</Property>
+						<Property>
+							<Name>Description</Name>
+						</Property>
+						<Property>
+							<Name>Comments</Name>
+						</Property>
+						<Property>
+							<Name>When</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>StuffUpdated</Name>
+					<PropertyList>
+						<Property>
+							<Name>StuffId</Name>
+						</Property>
+						<Property>
+							<Name>Description</Name>
+						</Property>
+						<Property>
+							<Name>Context</Name>
+						</Property>
+						<Property>
+							<Name>Comments</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>StuffEliminated</Name>
+					<PropertyList>
+						<Property>
+							<Name>StuffId</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+					<Message> <Name>StuffDone</Name>
+					<PropertyList>
+						<Property>
+							<Name>StuffId</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>StuffActioned</Name>
+					<PropertyList>
+						<Property>
+							<Name>StuffId</Name>
+						</Property>
+						<Property>
+							<Name>Stuff</Name>
+						</Property>
+						<Property>
+							<Name>Context</Name>
+						</Property>
+						<Property>
+							<Name>SucessfullOutcome</Name>
+						</Property>
+						<Property>
+							<Name>Notes</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>StuffBecameProject</Name>
+					<PropertyList>
+						<Property>
+							<Name>StuffId</Name>
+						</Property>
+						<Property>
+							<Name>Stuff</Name>
+						</Property>
+						<Property>
+							<Name>ProjectId</Name>
+						</Property>
+						<Property>
+							<Name>Project</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>ActionDone</Name>
+					<PropertyList>
+						<Property>
+							<Name>ActionId</Name>
+						</Property>
+						<Property>
+							<Name>Date</Name>
+						</Property>
+						<Property>
+							<Name>ProjectId</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>StuffActionedToProject</Name>
+					<PropertyList>
+						<Property>
+							<Name>StuffId</Name>
+						</Property>
+						<Property>
+							<Name>Stuff</Name>
+						</Property>
+						<Property>
+							<Name>ProjectId</Name>
+						</Property>
+						<Property>
+							<Name>Project</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>StuffIncubated</Name>
+					<PropertyList>
+						<Property> <Name>TaskId</Name> </Property>
+						<Property> <Name>StuffId</Name> </Property>
+						<Property> <Name>Context</Name> </Property>
+						<Property> <Name>Description</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
+						<Property> <Name>TickleDate</Name> </Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>ContextCreated</Name>
+					<PropertyList>
+						<Property> <Name>Context</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>ContextUpdated</Name>
+					<PropertyList>
+						<Property> <Name>Context</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
+					</PropertyList>
+				</Message>
+			</MessageList>
+		</MessageSet>
+		<MessageSet>
+			<Name>View Events</Name>
+			<Type>Events</Type>
+			<MessageList>
+				<Message>
+					<Name>ViewCreated</Name>
+					<PropertyList>
+						<Property>
+							<Name>Name</Name>
+						</Property>
+						<Property>
+							<Name>Description</Name>
+						</Property>
+						<Property>
+							<Name>Status</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message>
+					<Name>ViewUpdated</Name>
+					<PropertyList>
+						<Property>
+							<Name>Name</Name>
+						</Property>
+						<Property>
+							<Name>Status</Name>
+						</Property>
+						<Property>
+							<Name>Updated</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message>
+					<Name>ViewRemoved</Name>
+					<PropertyList>
+						<Property>
+							<Name>Name</Name>
+						</Property>
+						<Property>
+							<Name>Status</Name>
+						</Property>
+						<Property>
+							<Name>Updated</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+			</MessageList>
+		</MessageSet>
+	</MessageSetList>
+</GTDEvents>

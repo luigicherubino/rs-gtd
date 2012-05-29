@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<Projection>
+	<DataComponentStore>Test Store</DataComponentStore>
+	<DataSource>GTD DB</DataSource>
+	<ViewList> <View>
+			<Name>ADMIN_VIEWS</Name>
+			<Table>ADMIN_VIEWS</Table>
+			<AcceptEventList>
+				<AcceptEvent>
+					<Event>ViewCreated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>Name</Key>
+					<MapList type="list">
+						<Map id="Name">NAME</Map>
+						<Map id="Status">STATUS</Map>
+						<Map id="Created">CREATED</Map>
+						<Map id="Description">DESCRIPTION</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>ViewUpdated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>Name</Key>
+					<MapList type="list">
+						<Map id="Name">NAME</Map>
+						<Map id="Status">STATUS</Map>
+						<Map id="Updated">UPDATED</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>ViewRemoved</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>Name</Key>
+					<MapList type="list">
+						<Map id="Name">NAME</Map>
+						<Map id="Status">STATUS</Map>
+					</MapList>
+				</AcceptEvent>
+			</AcceptEventList>
+		</View>
+		<View> <Name>stuff_list</Name>
+			<Table>stuff_list</Table>
+			<AcceptEventList>
+				<AcceptEvent>
+					<Event>StuffCollected</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>StuffId</Key>
+					<MapList type="list">
+						<Map id="StuffId">stuff_id</Map>
+						<Map id="When">When</Map>
+						<Map id="Description">Description</Map>
+						<Map id="Comments">Comments</Map>
+						<Map id="Context">Context</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>StuffUpdated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>StuffId</Key>
+					<MapList type="list">
+						<Map id="StuffId">stuff_id</Map>
+						<Map id="Stuff">STUFF</Map>
+						<Map id="NewName">STUFF</Map>
+						<Map id="Context">Context</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>StuffDone</Event>
+					<Operation>Delete</Operation>
+					<Key>StuffId</Key>
+					<MapList type="list">
+						<Map id="StuffId">stuff_id</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>StuffEliminated</Event>
+					<Operation>Delete</Operation>
+					<Key>StuffId</Key>
+					<MapList type="list">
+						<Map id="StuffId">stuff_id</Map>
+					</MapList>
+				</AcceptEvent>
+					<AcceptEvent>
+					<Event>StuffIncubated</Event>
+					<Operation>Delete</Operation>
+					<Key>StuffId</Key>
+					<MapList type="list">
+						<Map id="StuffId">stuff_id</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>StuffActioned</Event>
+					<Key>StuffId</Key>
+					<Operation>Delete</Operation>
+					<MapList type="list">
+						<Map id="StuffId">stuff_id</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>StuffBecameProject</Event>
+					<Operation>Delete</Operation>
+					<Key>StuffId</Key>
+					<MapList type="list">
+						<Map id="StuffId">stuff_id</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>StuffActionedToProject</Event>
+					<Operation>Delete</Operation>
+					<Key>StuffId</Key>
+					<MapList type="list">
+						<Map id="StuffId">stuff_id</Map>
+					</MapList>
+				</AcceptEvent>
+			</AcceptEventList>
+		</View>
+		<View> <Name>next_action_list</Name>
+			<Table>next_action_list</Table>
+			<AcceptEventList>
+				<AcceptEvent>
+					<Event>StuffActioned</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>ActionId</Key>
+					<MapList type="list">
+						<Map id="ActionId">id</Map>
+						<Map id="Status">status</Map>
+						<Map id="Description">description</Map>
+						<Map id="Context">context</Map>
+						<Map id="Outcome">outcome</Map>
+						<Map id="NextAction">next_action</Map>
+						<Map id="Time">time</Map>
+						<Map id="Energy">energy</Map>
+						<Map id="Priority">priority</Map>
+						<Map id="Comments">comments</Map>
+					</MapList>
+				</AcceptEvent>
+			</AcceptEventList>
+		</View>
+		<View> <Name>someday_list</Name>
+			<Table>someday_list</Table>
+			<AcceptEventList>
+				<AcceptEvent>
+					<Event>StuffIncubated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>TaskId</Key>
+					<MapList type="list">
+						<Map id="TaskId">task_id</Map>
+						<Map id="StuffId">stuff_id</Map>
+						<Map id="Context">context</Map>
+						<Map id="Description">description</Map>
+						<Map id="Comments">comments</Map>
+						<Map id="TickleDate">tickle_date</Map>
+					</MapList>
+				</AcceptEvent>
+			</AcceptEventList>
+		</View>
+		<View> <Name>context_list</Name>
+			<Table>context_list</Table>
+			<AcceptEventList>
+				<AcceptEvent> <Event>ContextCreated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>Context</Key>
+					<MapList type="list">
+						<Map id="Context">context</Map>
+						<Map id="Comments">comments</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent> <Event>ContextUpdated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>Context</Key>
+					<MapList type="list">
+						<Map id="Context">context</Map>
+						<Map id="Comments">comments</Map>
+					</MapList>
+				</AcceptEvent>
+			</AcceptEventList>
+		</View>
+	</ViewList>
+</Projection>

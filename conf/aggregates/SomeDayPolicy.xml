@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<SomeDayPolicy>
+	<Entity>SomeDayTask</Entity>
+	<ActionList>
+		<Action>
+			<Command>IncubateStuff</Command>
+			<Type>Init</Type>
+			<Id>TaskId</Id>
+			<InitMapList type="list">
+				<InitMap name="TaskId">TaskId</InitMap>
+				<InitMap name="StuffId">StuffId</InitMap>
+				<InitMap name="Context">Context</InitMap>
+				<InitMap name="Description">Description</InitMap>
+				<InitMap name="Comments">Comments</InitMap>
+				<InitMap name="TickleDate">TickleDate</InitMap>
+			</InitMapList>
+		</Action>
+	</ActionList>
+</SomeDayPolicy>

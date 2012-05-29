@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ProcessAction>
+	<Entity>ProcessAction</Entity>
+	<ActionList>
+		<Action>
+			<Command>ActionStuff</Command>
+			<Type>Init</Type>
+			<Id>ActionId</Id>
+			<InitMapList type="list">
+				<InitMap id="ActionId">ActionId</InitMap>
+				<InitMap id="StuffId">StuffId</InitMap>
+				<InitMap id="Description">Description</InitMap>
+				<InitMap id="Context">Context</InitMap>
+				<InitMap id="Outcome">Outcome</InitMap>
+				<InitMap id="NextAction">NextAction</InitMap>
+				<InitMap id="Time">Time</InitMap>
+				<InitMap id="Energy">Energy</InitMap>
+				<InitMap id="Priority">Priority</InitMap>
+				<InitMap id="Comments">Comments</InitMap>
+			</InitMapList>
+		</Action>
+	</ActionList>
+</ProcessAction>

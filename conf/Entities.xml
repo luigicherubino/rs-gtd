@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<Entities>
+	<EntityList>
+		<Entity> <Name>Context</Name>
+			<Type>Generic Item</Type>
+			<PropertyList>
+				<Property>
+					<Name>Context</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Comments</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>IsActive</Name>
+					<Type>String</Type>
+				</Property>
+			</PropertyList>
+			<EventList>
+				<Event> <Name>ContextCreated</Name>
+					<Trigger>OnCreated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="Context">Context</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+						<PayLoad id="IsActive">IsActive</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event> <Name>ContextUpdated</Name>
+					<Trigger>OnPayloadUpdated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="Context">Context</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+					</PayLoadList>
+				</Event>
+			</EventList>
+		</Entity>
+
+		<Entity> <Name>ProcessStuff</Name>
+			<Type>Generic Item</Type>
+			<PropertyList>
+				<Property>
+					<Name>StuffId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Description</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Comments</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>When</Name>
+					<Type>String</Type>
+				</Property>
+			</PropertyList>
+			<EventList>
+				<Event>
+					<Name>StuffCollected</Name>
+					<Trigger>OnCreated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="StuffId">StuffId</PayLoad><!-- BUG : Need to reverse map-->
+						<PayLoad id="Description">Description</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+						<PayLoad id="When">When</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event>
+					<Name>StuffUpdated</Name>
+					<Trigger>OnPropertyUpdated</Trigger>
+					<Property>Name</Property>
+					<PayLoadList type="list">
+						<PayLoad id="StuffId">StuffId</PayLoad>
+						<PayLoad id="Description">Description</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+						<PayLoad id="When">When</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event>
+					<Name>StuffEliminated</Name>
+					<Trigger>OnPropertyUpdated</Trigger>
+					<Property>Status</Property>
+					<PropertyValue>Eliminated</PropertyValue>
+					<PayLoadList type="list">
+						<PayLoad id="StuffId">StuffId</PayLoad>
+					</PayLoadList>
+				</Event>
+				</EventList>
+		</Entity>
+		<Entity> <Name>ProcessAction</Name>
+			<Type>Generic Item</Type>
+			<PropertyList>
+				<Property>
+					<Name>ActionId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>StuffId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Status</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Description</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Context</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Outcome</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>NextAction</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Time</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Energy</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Priority</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>DateDone</Name>
+					<Type>String</Type>
+				</Property>
+					<Property>
+					<Name>Comments</Name>
+					<Type>String</Type>
+				</Property>
+			</PropertyList>
+			<EventList>
+				<Event>
+					<Name>ActionDone</Name>
+					<Trigger>OnUpdate DateDone</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="ActionId">ActionId</PayLoad>
+						<PayLoad id="Date">Outcome</PayLoad>
+						<PayLoad id="ProjectId"></PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event>
+					<Name>StuffActioned</Name>
+					<Trigger>OnCreated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="ActionId">ActionId</PayLoad>
+						<PayLoad id="StuffId">StuffId</PayLoad>
+						<PayLoad id="Description">Description</PayLoad>
+						<PayLoad id="Context">Context</PayLoad>
+						<PayLoad id="Outcome">Outcome</PayLoad>
+						<PayLoad id="NextAction">NextAction</PayLoad>
+						<PayLoad id="Time">Time</PayLoad>
+						<PayLoad id="Energy">Energy</PayLoad>
+						<PayLoad id="Priority">Priority</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+					</PayLoadList>
+				</Event>
+			</EventList>
+		</Entity>
+		<Entity> <Name>SomeDayTask</Name>
+			<Type>Generic Item</Type>
+			<PropertyList>
+				<Property>
+					<Name>TaskId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>StuffId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Context</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Description</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Comments</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>TickleDate</Name>
+					<Type>String</Type>
+				</Property>
+			</PropertyList>
+			<EventList>
+				<Event>
+					<Name>StuffIncubated</Name>
+					<Trigger>OnCreated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="TaskId">TaskId</PayLoad>
+						<PayLoad id="StuffId">StuffId</PayLoad>
+						<PayLoad id="Context">Context</PayLoad>
+						<PayLoad id="Description">Description</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+						<PayLoad id="TickleDate">TickleDate</PayLoad>
+					</PayLoadList>
+				</Event>
+			</EventList>
+		</Entity>
+	</EntityList>
+</Entities>

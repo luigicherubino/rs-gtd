@@ -1,0 +1,900 @@
+<?xml version="1.0"?>
+<GTDResouces>
+	<ResourceList>
+		<!-- Home and Sitemap: -->
+		<Resource> <Name>/</Name>
+			<Type>WebService</Type>
+			<Template>home.html</Template>
+			<OperationList>
+				<Operation>
+					<Name>Home</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Home</Name>
+							<Type>Query</Type>
+							<Class>repos</Class>
+							<QueryType>Form</QueryType>
+							<PageSize>1</PageSize>
+							<Table>project_list</Table>
+							<Order>project_name</Order>
+							<NoColumns>Y</NoColumns>
+							<Filter>project_id</Filter>
+						</Composition>
+					</CompositionList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/sitemap</Name>
+			<Title>Sitemap</Title>
+			<Type>WebService</Type>
+			<SubType>Resources</SubType>
+		</Resource>
+		<!-- Admin: -->
+		<Resource> <Name>/admin</Name>
+			<Type>Admin</Type>
+		</Resource>
+		<Resource> <Name>/admin/eventstore</Name>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>List of Events</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>List of Events</Name>
+							<Class>list-of-events</Class>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<PageSize>10</PageSize>
+							<Table>AGGREGATE_EVENT</Table>
+							<Order>CREATED desc</Order>
+							<JoinList>
+								<Join>
+									<Name>Aggregate</Name>
+									<Table>aggregate</Table>
+									<On>aggregate_id</On>
+									<Key>id</Key>
+								</Join>	
+							</JoinList>
+							<ColumnList>
+								<Column>
+									<Name>Name</Name>
+									<Value>{Aggregate:Name} {aggregate_id}</Value> 
+								</Column>
+								<!--
+								<Column>
+									<Name>Id</Name>
+									<Value>AGGREGATE_ID</Value>
+								</Column>
+								-->
+								<Column>
+									<Name>Version</Name>
+									<Value>v{VERSION}</Value>
+								</Column>
+								<Column>
+									<Name>Content</Name>
+									<Value>{escapexmlpre:CONTENT}</Value>
+								</Column>
+								<Column>
+									<Name>Created</Name>
+									<Value>CREATED</Value>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/admin/projector</Name>
+			<Type>WebService</Type>
+			<SubType>Projector</SubType>
+			<OperationList>
+			<Operation>
+					<Name>List of Views</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/admin/projector</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition>
+						<Composition>
+							<Name>List of Views</Name>
+							<Class>rs-admin-views</Class>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<PageSize>5</PageSize>
+							<Table>ADMIN_VIEWS</Table>
+							<ColumnList>
+								<Column>
+									<Value>Status</Value>
+								</Column>
+								<Column>
+									<Value>NAME</Value>
+									<Href>/admin/views/{name}</Href>
+									<Class>rs-link</Class>
+								</Column>
+								<Column>
+									<Value>Description</Value>
+								</Column>
+								<Column>
+									<Value>Created</Value>
+								</Column>
+								<Column>
+									<Value>Updated</Value>
+								</Column>
+								<Column>
+									<Element>div</Element>
+									<Class>clear</Class>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/admin/resources</Name>
+			<Title>List of Resources</Title>
+			<Type>WebService</Type>
+			<SubType>Resources</SubType>
+		</Resource>
+
+		<!-- Domain -->
+		<Resource> <Name>/someday</Name>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Someday List</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Someday List</Name>
+							<Class>someday-list</Class>
+							<TemplateVar>Content</TemplateVar>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Table>someday_list</Table>
+							<ColumnList>
+								<Column>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Value>Description</Value>
+									<Href>/someday/{task_id}</Href>
+								</Column>
+								<Column>
+									<Name>Tickle</Name>
+									<Value>tickle_date</Value>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/someday/{id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+										<Option>
+											<Uri>/someday/{id}</Uri>
+											<Operation>GET</Operation>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Incubate</Name>
+					<Aggregate>SomeDayPolicy</Aggregate>
+					<Command>IncubateStuff</Command>
+					<Type>POST</Type>
+                    <View>stuff_list</View>
+                    <FilterList>
+                        <Filter>
+                            <Field>stuff_id</Field>
+                            <xValue>{stuff_id}</xValue>
+                            <Value>{query:stuff_id}</Value>
+                        </Filter>
+                    </FilterList>
+					<ControlList>
+						<Control>
+							<Name>stuff-id</Name>
+							<Type>hidden</Type>
+							<Value>{stuff_id}</Value>
+						</Control>
+						<Control>
+							<Label>Context</Label>
+							<Name>context</Name>
+							<Type>select</Type>
+							<View>context_list</View>
+							<Option>context</Option>
+							<Value>{context}</Value>
+							<FilterColumn>context</FilterColumn>
+							<FilterValue>is not null</FilterValue>
+						</Control>
+						<Control>
+							<Label>Description</Label>
+							<Name>description</Name>
+							<Value>{Description}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Comments</Label>
+							<Name>comments</Name>
+							<Value>{Comments}</Value>
+							<Type>textarea</Type>
+						</Control>
+						<Control>
+							<Label>Tickle Date</Label>
+							<Name>tickle</Name>
+							<Type>text</Type>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="stuff-id">StuffId</MapControl>
+						<MapControl name="description">Description</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="tickle">TickleDate</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/someday/{id}</Name>
+			<Aggregate>ProcessAction</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Action Details</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<!--Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/stuff</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition-->
+						<Composition>
+							<Name>Action Details</Name>
+							<Class>action-details</Class>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Table>NEXT_ACTION_LIST</Table>
+							<Filter>Id</Filter>
+							<ColumnList>
+								<Column>
+									<Value>next_action</Value>
+									<Class>rs-h1</Class>
+								</Column>
+								<Column>
+									<Name>ID</Name>
+									<Value>ID</Value>
+								</Column>
+								<Column>
+									<Name>Description</Name>
+									<Value>Description</Value>
+								</Column>
+								<Column>
+									<Name>Context</Name>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Name>When</Name>
+									<Value>When</Value>
+								</Column>
+								<Column>
+									<Name>Outcome</Name>
+									<Value>Outcome</Value>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/someday/{id}</Uri>
+											<Operation>PUT</Operation>
+											<UriValues>OldOutcome={Outcome}</UriValues>
+										</Option>
+										<Option>
+											<Uri>/someday/{id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Done</Name>
+					<Type>DELETE</Type>
+					<Location>/nextactions</Location>
+					<OverridePost>Y</OverridePost>
+					<Command>DoAction</Command>
+					<ControlList>
+						<Control>
+							<Name>date</Name>
+							<Type>text</Type>
+							<Value>{now}</Value>
+							<Label>When was this done?</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{id}">ActionId</MapControl>
+						<MapControl name="date">Date</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+
+		<Resource> <Name>/context</Name>
+			<Aggregate>ContextPolicy</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>List of Contexts</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Context List</Name>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Class>context-list</Class>
+							<PageSize>100</PageSize>
+							<Table>context_list</Table>
+							<Order>context</Order>
+							<ColumnList>
+								<Column>
+									<Name>Context</Name>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/context/{id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+										<Option>
+											<Uri>/context</Uri>
+											<Operation>POST</Operation>
+										</Option>
+									</OptionList>
+								</Column>						
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Create Context</Name>
+					<Type>POST</Type>
+					<Redirect>/context</Redirect>
+					<Command>CreateContext</Command>
+					<ControlList>
+						<Control>
+							<Name>context</Name>
+							<Type>text</Type>
+							<Label>Context</Label>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>textarea</Type>
+							<Rows>5</Rows>
+							<Cols>60</Cols>
+							<Label>Comments</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/context/{name}</Name>
+			<Aggregate>ContextPolicy</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation> <Name>Update Context</Name>
+					<Type>PUT</Type>
+					<OverridePost>Y</OverridePost>
+					<Redirect>/context</Redirect>
+					<Command>UpdateStuff</Command>
+					<Table>context_list</Table>
+					<FilterList>
+						<Filter>
+							<Field>context</Field> 
+							<Value>{name}</Value> 
+						</Filter>
+					</FilterList>
+					
+					<ControlList>
+						<Control>
+							<Name>context</Name>
+							<Type>text</Type>
+							<Label>Context</Label>
+							<Value>{context}</Value>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>text</Type>
+							<Label>Comments</Label>
+							<Value>{comments}</Value>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+				<Operation> <Name>Deactivate Context</Name>
+					<Type>DELETE</Type>
+					<Location>/context</Location>
+					<Command>DeactivateContext</Command>
+					<ControlList>
+						<Control>
+							<Name>confirm</Name>
+							<Type>hidden</Type>
+							<Label>Are you sure?</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{name}">Context</MapControl>
+						<MapControl name="confirm">{}</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+
+		<!-- Website -->	
+		<Resource> <Name>/stuff</Name>
+			<Aggregate>ProcessStuff</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>List of Stuff</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Stuff List</Name>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Class>stuff-list</Class>
+							<PageSize>100</PageSize>
+							<Table>STUFF_LIST</Table>
+							<Order>WHEN desc</Order>
+							<ColumnList>
+								<Column>
+									<Name>Description</Name>
+								</Column>
+								<Column>
+									<Name>Comments</Name>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/stuff/{stuff_id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+										<Option>
+											<Uri>/nextactions</Uri>
+											<UriValues>stuff_id={stuff_id}</UriValues>
+											<Operation>POST</Operation>
+										</Option>
+										<Option>
+											<Uri>/someday</Uri>
+											<UriValues>stuff_id={stuff_id}</UriValues>
+											<Operation>POST</Operation>
+										</Option>
+										<Option>
+											<Label>Details</Label>
+											<Uri>/stuff/{stuff_id}</Uri>
+											<Operation>GET</Operation>
+										</Option>
+									</OptionList>
+								</Column>						
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Collect Stuff</Name>
+					<Type>POST</Type>
+					<Location>/stuff/{id}</Location>
+					<Redirect>/stuff/{id}</Redirect>
+					<Command>CollectStuff</Command>
+					<ControlList>
+						<Control>
+							<Name>descr</Name>
+							<Type>text</Type>
+							<Label>Describe your stuff</Label>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>textarea</Type>
+							<Rows>5</Rows>
+							<Cols>60</Cols>
+							<Label>Comments</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="id">StuffId</MapControl>
+						<MapControl name="descr">Description</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/stuff/{id}</Name>
+			<Aggregate>ProcessStuff</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Stuff Details</Name>
+					<Type>GET</Type>
+					<Table>STUFF_LIST</Table>
+					<CompositionList>
+						<Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/stuff</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition>
+						<Composition>
+							<Name>Stuff Details</Name>
+							<Class>stuff-details</Class>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Table>STUFF_LIST</Table>
+							<Filter>Id</Filter>
+							<ColumnList>
+								<Column>
+									<Value>Description</Value>
+									<Class>rs-h1</Class>
+								</Column>
+								<Column>
+									<Name>Created</Name>
+									<Value>Created</Value>
+								</Column>
+								<Column>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/stuff/{id}</Uri>
+											<Operation>PUT</Operation>
+											<UriValues>Old={STUFF}</UriValues>
+										</Option>
+										<Option>
+											<Uri>/stuff/{id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+										<Option>
+											<Uri>/nextactions</Uri>
+											<Operation>POST</Operation>
+											<UriValues>stuff-id={id}</UriValues>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Update Stuff</Name>
+					<Type>PUT</Type>
+					<OverridePost>Y</OverridePost>
+					<Relative></Relative>
+					<Redirect>/stuff/{id}</Redirect>
+					<Command>UpdateStuff</Command>
+					<Table>stuff_list</Table>
+					<FilterList>
+						<Filter>
+							<Field>stuff_id</Field> 
+							<Value>{id}</Value> 
+						</Filter>
+					</FilterList>
+					
+					<ControlList>
+						<Control>
+							<Name>description</Name>
+							<Type>text</Type>
+							<Label>Description</Label>
+							<Value>{description}</Value>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>text</Type>
+							<Label>Comments</Label>
+							<Value>{comments}</Value>
+						</Control>
+						<Control>
+							<Label>Context</Label>
+							<Name>context</Name>
+							<Type>select</Type>
+							<View>context_list</View>
+							<Option>context</Option>
+							<Value>{context}</Value>
+							<FilterColumn>context</FilterColumn>
+							<FilterValue>is not null</FilterValue>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="{id}">StuffId</MapControl>
+						<MapControl name="description">Description</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+						<MapControl name="context">Context</MapControl>
+					</MapControlList>
+				</Operation>
+				<Operation>
+					<Name>Eliminate</Name>
+					<Type>DELETE</Type>
+					<Location>/stuff</Location>
+					<Command>EliminateStuff</Command>
+					<ControlList>
+						<Control>
+							<Name>confirm</Name>
+							<Type>hidden</Type>
+							<Label>Are you sure?</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{id}">StuffId</MapControl>
+						<MapControl name="confirm">{}</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/nextactions</Name>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Next Actions</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<!--Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/stuff</Uri>
+									<Operation>POST</Operation>
+								</Option> 
+							</OptionList>
+						</Composition-->
+						<Composition>
+							<Name>Next Action List</Name>
+							<Class>next-action-list</Class>
+							<TemplateVar>Content</TemplateVar>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Table>NEXT_ACTION_LIST</Table>
+							<ColumnList>
+								<Column>
+									<Class>rs-h1</Class>
+									<Name>Action</Name>
+									<Value>NEXT_ACTION</Value>
+									<Href>/nextactions/{id}</Href>
+								</Column>
+									<Column>
+									<Name>Outcome</Name>
+									<Value>OUTCOME</Value>
+								</Column>
+								<Column>
+									<Value>Description</Value>
+								</Column>
+								<Column>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/nextactions/{id}</Uri>
+											<Operation>DELETE</Operation>
+											<UriValues>rs-test</UriValues>
+										</Option>
+										<Option>
+											<Uri>/nextactions/{id}</Uri>
+											<Operation>GET</Operation>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Process</Name>
+					<Aggregate>ProcessAction</Aggregate>
+					<Command>ActionStuff</Command>
+					<Type>POST</Type>
+					<Redirect>/nextactions/{id}</Redirect>
+                    <View>stuff_list</View>
+                    <FilterList>
+                        <Filter>
+                            <Field>stuff_id</Field>
+                            <Value>{query:stuff_id}</Value>
+                        </Filter>
+                    </FilterList>
+					<ControlList>
+						<Control>
+							<Name>stuff-id</Name>
+							<Type>hidden</Type>
+							<Value>{stuff_id}</Value>
+						</Control>
+						<Control>
+							<Label>Description</Label>
+							<Name>Description</Name>
+							<Value>{Description}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Context</Label>
+							<Name>context</Name>
+							<Type>select</Type>
+							<View>context_list</View>
+							<Option>context</Option>
+							<Value>{context}</Value>
+							<FilterColumn>context</FilterColumn>
+							<FilterValue>is not null</FilterValue>
+						</Control>
+						<Control>
+							<Label>What's the successfull outcome?</Label>
+							<Name>outcome</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>What is the Next Action?</Label>
+							<Name>next-action</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Time</Label>
+							<Name>time</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Energy</Label>
+							<Name>energy</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Priority</Label>
+							<Name>priority</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Comments</Label>
+							<Name>comments</Name>
+							<Value>{Comments}</Value>
+							<Type>textarea</Type>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="stuff-id">StuffId</MapControl>
+						<MapControl name="Description">Description</MapControl>
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="outcome">Outcome</MapControl>
+						<MapControl name="next-action">NextAction</MapControl>
+						<MapControl name="time">Time</MapControl>
+						<MapControl name="energy">Energy</MapControl>
+						<MapControl name="priority">Priority</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/nextactions/{id}</Name>
+			<Aggregate>ProcessAction</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Action Details</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<!--Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/stuff</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition-->
+						<Composition>
+							<Name>Action Details</Name>
+							<Class>action-details</Class>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Table>NEXT_ACTION_LIST</Table>
+							<Filter>Id</Filter>
+							<ColumnList>
+								<Column>
+									<Value>next_action</Value>
+									<Class>rs-h1</Class>
+								</Column>
+								<Column>
+									<Name>ID</Name>
+									<Value>ID</Value>
+								</Column>
+								<Column>
+									<Name>Description</Name>
+									<Value>Description</Value>
+								</Column>
+								<Column>
+									<Name>Context</Name>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Name>When</Name>
+									<Value>When</Value>
+								</Column>
+								<Column>
+									<Name>Outcome</Name>
+									<Value>Outcome</Value>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/nextactions/{id}</Uri>
+											<Operation>PUT</Operation>
+											<UriValues>OldOutcome={Outcome}</UriValues>
+										</Option>
+										<Option>
+											<Uri>/nextactions/{id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Done</Name>
+					<Type>DELETE</Type>
+					<Location>/nextactions</Location>
+					<OverridePost>Y</OverridePost>
+					<Command>DoAction</Command>
+					<ControlList>
+						<Control>
+							<Name>date</Name>
+							<Type>text</Type>
+							<Value>{now}</Value>
+							<Label>When was this done?</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{id}">ActionId</MapControl>
+						<MapControl name="date">Date</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+	</ResourceList>
+</GTDResouces>

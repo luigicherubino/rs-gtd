@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<DataConfig>
+	<!-- Data Component  -->
+	<DataComponentStoreList>
+		<DataComponentStore>
+			<Name>Test Store</Name>
+			<DataComponentMapList>
+				<DataComponentMap> <Name>ADMIN_VIEWS</Name>
+					<DataSourceName>Test DB</DataSourceName>
+					<Table>ADMIN_VIEWS</Table>
+					<AutoMap>Y</AutoMap>
+					<KeyProperty>ID</KeyProperty>
+				</DataComponentMap>
+				<DataComponentMap> <Name>stuff_list</Name>
+					<DataSourceName>Test DB</DataSourceName>
+					<Table>stuff_list</Table>
+					<AutoMap>Y</AutoMap>
+					<KeyProperty>stuff_id</KeyProperty>
+				</DataComponentMap>
+				<DataComponentMap> <Name>next_action_list</Name>
+					<DataSourceName>Test DB</DataSourceName>
+					<Table>next_action_list</Table>
+					<AutoMap>Y</AutoMap>
+					<KeyProperty>ID</KeyProperty>
+				</DataComponentMap>
+				<DataComponentMap> <Name>someday_list</Name>
+				   	<DataSourceName>Test DB</DataSourceName>
+					<Table>someday_list</Table>
+					<AutoMap>Y</AutoMap>
+					<KeyProperty>task_id</KeyProperty>
+				</DataComponentMap>
+				<DataComponentMap> <Name>context_list</Name>
+				   	<DataSourceName>Test DB</DataSourceName>
+					<Table>context_list</Table>
+					<AutoMap>Y</AutoMap>
+					<KeyProperty>context</KeyProperty>
+				</DataComponentMap>
+			</DataComponentMapList>
+		</DataComponentStore>
+	</DataComponentStoreList>
+	<!-- Data Sources -->
+	<DataSourceList>
+		<DataSource>
+			<Name>Test DB</Name>
+			<Type>SQL</Type>
+			<Driver>QMYSQL</Driver>
+			<Database>rs_gtd_prod</Database>
+			<UserName>rs</UserName>
+			<Password>realsma</Password>
+			<TableList>
+				<Table> <Name>stuff_list</Name>
+					<ColList type="list">
+						<Col id="stuff_id">varchar 15</Col>
+						<Col id="description">varchar 200</Col>
+						<Col id="comments">varchar 200</Col>
+						<Col id="context">varchar 100</Col>
+						<Col id="when">datetime</Col>
+					</ColList>
+				</Table>
+				<Table> <Name>next_action_list</Name>
+					<ColList type="list">
+						<Col id="id">varchar 15</Col>
+						<Col id="status">varchar 20</Col>
+						<Col id="when">datetime</Col>
+						<Col id="description">varchar 200</Col>
+						<Col id="context">varchar 100</Col>
+						<Col id="outcome">varchar 254</Col>
+						<Col id="next_action">varchar 254</Col>
+						<Col id="time">varchar 10</Col>
+						<Col id="energy">varchar 20</Col>
+						<Col id="priority">varchar 20</Col>
+						<Col id="comments">varchar 254</Col>
+					</ColList>
+				</Table>
+				<Table> <Name>ADMIN_VIEWS</Name>
+					<ColList type="list">
+						<Col id="NAME">varchar 100</Col>
+						<Col id="CREATED">datetime</Col>
+						<Col id="UPDATED">datetime</Col>
+						<Col id="DESCRIPTION">varchar 254</Col>
+						<Col id="STATUS">varchar 30</Col>
+					</ColList>
+				</Table>
+				<Table> <Name>context_list</Name>
+					<ColList type="list">
+						<Col id="context">varchar 100</Col>
+						<Col id="comments">varchar 254</Col>
+						<Col id="is_active">varchar 1</Col>
+					</ColList>
+				</Table>
+				<Table> <Name>someday_list</Name>
+					<ColList type="list">
+						<Col id="task_id">varchar 15</Col>
+						<Col id="stuff_id">varchar 15</Col>
+						<Col id="context">varchar 100</Col>
+						<Col id="description">varchar 254</Col>
+						<Col id="comments">varchar 254</Col>
+						<Col id="tickle_date">datetime</Col>
+					</ColList>
+				</Table>
+			</TableList>
+		</DataSource>
+	</DataSourceList>
+</DataConfig>
