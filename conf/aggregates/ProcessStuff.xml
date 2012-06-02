@@ -16,15 +16,17 @@
 			<Command>UpdateStuff</Command>
 			<Type>Update ProcessStuff</Type>
 			<MapList type="list">
-				<Map name="Description"/>
-				<Map name="Comments"/>
+				<Map name="StuffId">StuffId</Map>
+				<Map name="Description">Description</Map>
+				<Map name="Comments">Comments</Map>
 			</MapList>
 		</Action>
 		<Action>
 			<Command>EliminateStuff</Command>
 			<Type>Update ProcessStuff</Type>
 			<MapList type="list">
-				<Map name="NewStatus">Status</Map>
+				<Map name="{now}">Eliminated</Map>
+				<Map name="{string:Eliminated}">Status</Map>
 			</MapList>
 			<SetPropertyList>
 				<SetProperty>

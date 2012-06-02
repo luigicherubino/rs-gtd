@@ -47,10 +47,9 @@
 					<Key>StuffId</Key>
 					<MapList type="list">
 						<Map id="StuffId">stuff_id</Map>
-						<Map id="When">When</Map>
 						<Map id="Description">Description</Map>
 						<Map id="Comments">Comments</Map>
-						<Map id="Context">Context</Map>
+						<Map id="When">When</Map>
 					</MapList>
 				</AcceptEvent>
 				<AcceptEvent>
@@ -59,9 +58,9 @@
 					<Key>StuffId</Key>
 					<MapList type="list">
 						<Map id="StuffId">stuff_id</Map>
-						<Map id="Stuff">STUFF</Map>
-						<Map id="NewName">STUFF</Map>
-						<Map id="Context">Context</Map>
+						<Map id="Description">Description</Map>
+						<Map id="Comments">Comments</Map>
+						<Map id="When">When</Map>
 					</MapList>
 				</AcceptEvent>
 				<AcceptEvent>
@@ -150,6 +149,26 @@
 						<Map id="Description">description</Map>
 						<Map id="Comments">comments</Map>
 						<Map id="TickleDate">tickle_date</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>SomeDayUpdated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>TaskId</Key>
+					<MapList type="list">
+						<Map id="TaskId">task_id</Map>
+						<Map id="Context">context</Map>
+						<Map id="Description">description</Map>
+						<Map id="Comments">comments</Map>
+						<Map id="TickleDate">tickle_date</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>SomeDayEliminated</Event>
+					<Operation>Delete</Operation>
+					<Key>TaskId</Key>
+					<MapList type="list">
+						<Map id="TaskId">task_id</Map>
 					</MapList>
 				</AcceptEvent>
 			</AcceptEventList>

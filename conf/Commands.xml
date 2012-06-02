@@ -56,10 +56,6 @@
 					<Name>Comments</Name>
 					<Type>String</Type>
 				</Property>
-				<Property>
-					<Name>Context</Name>
-					<Type>String</Type>
-				</Property>
 			</PropertyList>
 		</Command>
 		<Command> <Name>EliminateStuff</Name>
@@ -155,6 +151,38 @@
 					<Type>String</Type>
 				</Property>
 				</PropertyList>
+		</Command>
+		<Command> <Name>EliminateSomeDay</Name>
+			<PropertyList>
+				<Property>
+					<Name>TaskId</Name>
+					<Type>String</Type>
+				</Property>
+			</PropertyList>
+		</Command>
+		<Command> <Name>UpdateSomeDay</Name>
+			<PropertyList>
+				<Property>
+					<Name>TaskId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Description</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Context</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>TickleDate</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Comments</Name>
+					<Type>String</Type>
+				</Property>
+			</PropertyList>
 		</Command>
 	</CommandList>
 </GTDCommands>

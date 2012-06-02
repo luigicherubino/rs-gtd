@@ -30,10 +30,10 @@
 							<Name>Description</Name>
 						</Property>
 						<Property>
-							<Name>Context</Name>
+							<Name>Comments</Name>
 						</Property>
 						<Property>
-							<Name>Comments</Name>
+							<Name>When</Name>
 						</Property>
 					</PropertyList>
 				</Message>
@@ -135,6 +135,32 @@
 					<PropertyList>
 						<Property> <Name>Context</Name> </Property>
 						<Property> <Name>Comments</Name> </Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>SomeDayUpdated</Name>
+					<PropertyList>
+						<Property>
+							<Name>TaskId</Name>
+						</Property>
+						<Property>
+							<Name>Description</Name>
+						</Property>
+						<Property>
+							<Name>Context</Name>
+						</Property>
+						<Property>
+							<Name>TickleDate</Name>
+						</Property>
+						<Property>
+							<Name>Comments</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>SomeDayEliminated</Name>
+					<PropertyList>
+						<Property>
+							<Name>TaskId</Name>
+						</Property>
 					</PropertyList>
 				</Message>
 			</MessageList>

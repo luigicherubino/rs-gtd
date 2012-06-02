@@ -48,6 +48,14 @@
 					<Type>String</Type>
 				</Property>
 				<Property>
+					<Name>Eliminated</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Status</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
 					<Name>Comments</Name>
 					<Type>String</Type>
 				</Property>
@@ -69,13 +77,11 @@
 				</Event>
 				<Event>
 					<Name>StuffUpdated</Name>
-					<Trigger>OnPropertyUpdated</Trigger>
-					<Property>Name</Property>
+					<Trigger>OnPayloadUpdated</Trigger>
 					<PayLoadList type="list">
 						<PayLoad id="StuffId">StuffId</PayLoad>
 						<PayLoad id="Description">Description</PayLoad>
 						<PayLoad id="Comments">Comments</PayLoad>
-						<PayLoad id="When">When</PayLoad>
 					</PayLoadList>
 				</Event>
 				<Event>
@@ -181,6 +187,10 @@
 					<Type>String</Type>
 				</Property>
 				<Property>
+					<Name>Status</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
 					<Name>Context</Name>
 					<Type>String</Type>
 				</Property>
@@ -196,6 +206,10 @@
 					<Name>TickleDate</Name>
 					<Type>String</Type>
 				</Property>
+				<Property>
+					<Name>Eliminated</Name>
+					<Type>String</Type>
+				</Property>
 			</PropertyList>
 			<EventList>
 				<Event>
@@ -206,6 +220,17 @@
 						<PayLoad id="StuffId">StuffId</PayLoad>
 						<PayLoad id="Context">Context</PayLoad>
 						<PayLoad id="Description">Description</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+						<PayLoad id="TickleDate">TickleDate</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event>
+					<Name>SomeDayUpdated</Name>
+					<Trigger>OnPayloadUpdated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="TaskId">TaskId</PayLoad>
+						<PayLoad id="Description">Description</PayLoad>
+						<PayLoad id="Context">Context</PayLoad>
 						<PayLoad id="Comments">Comments</PayLoad>
 						<PayLoad id="TickleDate">TickleDate</PayLoad>
 					</PayLoadList>

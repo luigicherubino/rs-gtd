@@ -15,5 +15,29 @@
 				<InitMap name="TickleDate">TickleDate</InitMap>
 			</InitMapList>
 		</Action>
+		<Action>
+			<Command>EliminateSomeDay</Command>
+			<Type>Update SomeDayTask</Type>
+			<MapList type="list">
+				<Map name="{now}">Eliminated</Map>
+				<Map name="{string:Eliminated}">Status</Map>
+			</MapList>
+			<SetPropertyList>
+				<SetProperty>
+					<Name>Status</Name>
+					<Value>Eliminated</Value>
+				</SetProperty>
+			</SetPropertyList>
+		</Action>
+		<Action>
+			<Command>UpdateSomeDay</Command>
+			<Type>Update SomeDayTask</Type>
+			<MapList type="list">
+				<Map name="Context">Context</Map>
+				<Map name="Description">Description</Map>
+				<Map name="Comments">Comments</Map>
+				<Map name="TickleDate">TickleDate</Map>
+			</MapList>
+		</Action>
 	</ActionList>
 </SomeDayPolicy>

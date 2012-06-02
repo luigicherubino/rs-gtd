@@ -1,0 +1,47 @@
+dl.rs-item.stuff 
+{
+	border:1px dotted; 
+}
+
+dd.rs-title
+{
+	font-weight: bold;
+}
+
+dl.rs-item.project-list a:hover 
+{
+	color: #EC8000;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	width: 100%;
+}
+
+table.rs-item
+{
+	border-collapse:collapse;
+	width: 95%;
+
+}
+table.rs-item td,
+table.rs-item th
+{
+	padding:3px 7px 2px 7px;	
+	border:1px solid #e2e2e2;
+	text-align: left;
+	vertical-align: text-top;
+}
+
+table.rs-item th
+{
+	background-color:#ec8000;
+	color:white;
+}
+
+table.rs-item th
+{
+	background-color:#c1c1c1;
+	color:black;
+}
+
+
