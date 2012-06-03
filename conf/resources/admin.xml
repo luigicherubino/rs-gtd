@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<AdminConfig>
+	<!-- Admin: -->
+  <ResourceList>
+		<Resource> <Name>/sitemap</Name>
+		  <Title>Sitemap</Title>
+		  <Type>WebService</Type>
+		  <SubType>Resources</SubType>
+		</Resource>
+		<Resource> <Name>/admin</Name>
+			<Type>Admin</Type>
+		</Resource>
+		<Resource> <Name>/admin/eventstore</Name>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>List of Events</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>List of Events</Name>
+							<Class>list-of-events</Class>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<PageSize>10</PageSize>
+							<Table>AGGREGATE_EVENT</Table>
+							<Order>CREATED desc</Order>
+							<JoinList>
+								<Join>
+									<Name>Aggregate</Name>
+									<Table>aggregate</Table>
+									<On>aggregate_id</On>
+									<Key>id</Key>
+								</Join>	
+							</JoinList>
+							<ColumnList>
+								<Column>
+									<Name>Name</Name>
+									<Value>{Aggregate:Name} {aggregate_id}</Value> 
+								</Column>
+								<!--
+								<Column>
+									<Name>Id</Name>
+									<Value>AGGREGATE_ID</Value>
+								</Column>
+								-->
+								<Column>
+									<Name>Version</Name>
+									<Value>v{VERSION}</Value>
+								</Column>
+								<Column>
+									<Name>Content</Name>
+									<Value>{escapexmlpre:CONTENT}</Value>
+								</Column>
+								<Column>
+									<Name>Created</Name>
+									<Value>CREATED</Value>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/admin/projector</Name>
+			<Type>WebService</Type>
+			<SubType>Projector</SubType>
+			<OperationList>
+			<Operation>
+					<Name>List of Views</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/admin/projector</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition>
+						<Composition>
+							<Name>List of Views</Name>
+							<Class>rs-admin-views</Class>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<PageSize>5</PageSize>
+							<Table>ADMIN_VIEWS</Table>
+							<ColumnList>
+								<Column>
+									<Value>Status</Value>
+								</Column>
+								<Column>
+									<Value>NAME</Value>
+									<Href>/admin/views/{name}</Href>
+									<Class>rs-link</Class>
+								</Column>
+								<Column>
+									<Value>Description</Value>
+								</Column>
+								<Column>
+									<Value>Created</Value>
+								</Column>
+								<Column>
+									<Value>Updated</Value>
+								</Column>
+								<Column>
+									<Element>div</Element>
+									<Class>clear</Class>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/admin/resources</Name>
+			<Title>List of Resources</Title>
+			<Type>WebService</Type>
+			<SubType>Resources</SubType>
+		</Resource>
+
+  </ResourceList>
+</AdminConfig>

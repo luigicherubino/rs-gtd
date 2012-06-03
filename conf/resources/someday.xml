@@ -1,0 +1,224 @@
+<SomeDay>
+	<ResourceList>
+		<Resource> <Name>/someday</Name>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Someday List</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Someday List</Name>
+							<Class>someday-list</Class>
+							<TemplateVar>Content</TemplateVar>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Table>someday_list</Table>
+							<ColumnList>
+								<Column>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Value>Description</Value>
+									<Href>/someday/{task_id}</Href>
+								</Column>
+								<Column>
+									<Name>Tickle</Name>
+									<Value>tickle_date</Value>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/someday/{task_id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+										<Option>
+											<Uri>/someday/{task_id}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Someday</Name>
+					<Aggregate>SomeDayPolicy</Aggregate>
+					<Command>IncubateStuff</Command>
+					<Type>POST</Type>
+                    <View>stuff_list</View>
+                    <FilterList>
+                        <Filter>
+                            <Field>stuff_id</Field>
+                            <Value>{query:stuff_id}</Value>
+                        </Filter>
+                    </FilterList>
+					<ControlList>
+						<Control>
+							<Name>stuff-id</Name>
+							<Type>hidden</Type>
+							<Value>{stuff_id}</Value>
+						</Control>
+						<Control>
+							<Label>Context</Label>
+							<Name>context</Name>
+							<Type>select</Type>
+							<View>context_list</View>
+							<Option>context</Option>
+							<Value>{context}</Value>
+							<FilterColumn>context</FilterColumn>
+							<FilterValue>is not null</FilterValue>
+						</Control>
+						<Control>
+							<Label>Description</Label>
+							<Name>description</Name>
+							<Value>{Description}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Comments</Label>
+							<Name>comments</Name>
+							<Value>{Comments}</Value>
+							<Type>textarea</Type>
+						</Control>
+						<Control>
+							<Label>Tickle Date</Label>
+							<Name>tickle</Name>
+							<Type>text</Type>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="stuff-id">StuffId</MapControl>
+						<MapControl name="description">Description</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="tickle">TickleDate</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/someday/{id}</Name>
+			<Aggregate>SomeDayPolicy</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Someday Details</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Someday Details</Name>
+							<Class>action-details</Class>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Table>someday_list</Table>
+							<Filter>task_id</Filter>
+							<ColumnList>
+								<Column>
+									<Value>Description</Value>
+									<Class>rs-title</Class>
+								</Column>
+								<Column>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Name>Tickle</Name>
+									<Value>Tickle_Date</Value>
+								</Column>
+								<Column>
+									<Value>Comments</Value>
+									<Type>MarkDown</Type>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Label>Update</Label>
+											<Uri>/someday/{task_id}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+										<Option>
+											<Label>Trash</Label>
+											<Uri>/someday/{task_id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Update</Name>
+					<Type>PUT</Type>
+					<OverridePost>Y</OverridePost>
+					<Relative></Relative>
+					<Redirect>/somday/{id}</Redirect>
+					<Command>UpdateSomeDay</Command>
+					<Table>someday_list</Table>
+					<FilterList>
+						<Filter>
+							<Field>task_id</Field> 
+							<Value>{id}</Value> 
+						</Filter>
+					</FilterList>
+					<ControlList>
+						<Control>
+							<Name>description</Name>
+							<Type>text</Type>
+							<Label>Description</Label>
+							<Value>{description}</Value>
+						</Control>
+						<Control>
+							<Label>Context</Label>
+							<Name>context</Name>
+							<Type>select</Type>
+							<View>context_list</View>
+							<Option>context</Option>
+							<Value>{context}</Value>
+							<FilterColumn>context</FilterColumn>
+							<FilterValue>is not null</FilterValue>
+						</Control>
+						<Control>
+							<Name>tickle</Name>
+							<Type>text</Type>
+							<Label>Tickle Date</Label>
+							<Value>{tickle_date}</Value>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>textarea</Type>
+							<Label>Comments</Label>
+							<Value>{comments}</Value>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="{task_id}">TaskId</MapControl>
+						<MapControl name="description">Description</MapControl>
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="tickle">TickleDate</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+				<Operation> <Name>Trash</Name>
+					<Type>DELETE</Type>
+					<Location>/someday</Location>
+					<Command>EliminateSomeDay</Command>
+					<ControlList>
+						<Control>
+							<Name>confirm</Name>
+							<Type>hidden</Type>
+							<Label>Are you sure?</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{id}">TaskId</MapControl>
+						<MapControl name="confirm">{}</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+	</ResourceList>
+</SomeDay>

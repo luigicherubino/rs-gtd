@@ -14,12 +14,12 @@ h1 {
 }
 
 #page {
-  margin: 36px auto;
+  margin: 0px auto;
   width: 90%;
 }
 
 .content {
-	margin: 0 auto 53px;
+	margin: 0 auto;
 	width: 93.75%; /* 900px / 960px */
 }
 
@@ -31,5 +31,4 @@ h1 {
 .content .right {
 	float: left;
 	width: 25.666666666667%; /* 231px / 900px */
-	background-color: #CAC;
 }

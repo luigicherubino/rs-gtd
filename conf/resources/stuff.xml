@@ -1,0 +1,202 @@
+<Stuff>
+	<ResourceList>
+		<Resource> <Name>/stuff</Name>
+			<Aggregate>ProcessStuff</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>List of Stuff</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Stuff List</Name>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<PageSize>100</PageSize>
+							<Table>STUFF_LIST</Table>
+							<Class>stuff</Class>
+							<Order>WHEN desc</Order>
+							<ColumnList>
+								<Column>
+									<Value>Description</Value>
+									<Class>rs-title</Class>
+								</Column>
+								<Column>
+									<Value>Comments</Value>
+									<Type>markdown</Type>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/stuff/{stuff_id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+										<Option>
+											<Label>Actionable</Label>
+											<Uri>/nextactions</Uri>
+											<UriValues>stuff_id={stuff_id}</UriValues>
+											<Operation>POST</Operation>
+										</Option>
+										<Option>
+											<Label>Defer</Label>
+											<Uri>/someday</Uri>
+											<UriValues>stuff_id={stuff_id}</UriValues>
+											<Operation>POST</Operation>
+										</Option>
+										<Option>
+											<Uri>/stuff/{stuff_id}</Uri>
+											<Redirect>.</Redirect>
+											<Operation>PUT</Operation>
+										</Option>
+									</OptionList>
+								</Column>						
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Collect Stuff</Name>
+					<Type>POST</Type>
+					<Location>/stuff/{id}</Location>
+					<Redirect>/stuff/{id}</Redirect>
+					<Command>CollectStuff</Command>
+					<ControlList>
+						<Control>
+							<Name>descr</Name>
+							<Type>text</Type>
+							<Label>Describe your stuff</Label>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>textarea</Type>
+							<Rows>5</Rows>
+							<Cols>60</Cols>
+							<Label>Comments</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="id">StuffId</MapControl>
+						<MapControl name="descr">Description</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/stuff/{id}</Name>
+			<Aggregate>ProcessStuff</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Stuff Details</Name>
+					<Type>GET</Type>
+					<Table>STUFF_LIST</Table>
+					<CompositionList>
+						<Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/stuff</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition>
+						<Composition>
+							<Name>Stuff Details</Name>
+							<Class>stuff-details</Class>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Table>STUFF_LIST</Table>
+							<Filter>stuff_id</Filter>
+							<ColumnList>
+								<Column>
+									<Value>Description</Value>
+								</Column>
+								<Column>
+									<Name>Comments</Name>
+									<Value>Comments</Value>
+									<Type>MarkDown</Type>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/stuff/{id}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+										<Option>
+											<Uri>/stuff/{id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+										<Option>
+											<Uri>/nextactions</Uri>
+											<Operation>POST</Operation>
+											<UriValues>stuff-id={id}</UriValues>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Update</Name>
+					<Type>PUT</Type>
+					<OverridePost>Y</OverridePost>
+					<Relative></Relative>
+					<Redirect>/stuff/{id}</Redirect>
+					<Command>UpdateStuff</Command>
+					<Table>stuff_list</Table>
+					<FilterList>
+						<Filter>
+							<Field>stuff_id</Field> 
+							<Value>{id}</Value> 
+						</Filter>
+					</FilterList>
+					
+					<ControlList>
+						<Control>
+							<Name>description</Name>
+							<Type>text</Type>
+							<Label>Description</Label>
+							<Value>{description}</Value>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>textarea</Type>
+							<Label>Comments</Label>
+							<Value>{comments}</Value>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="{stuff_id}">StuffId</MapControl>
+						<MapControl name="description">Description</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+				<Operation>
+					<Name>Trash</Name>
+					<Type>DELETE</Type>
+					<Location>/stuff</Location>
+					<Command>EliminateStuff</Command>
+					<ControlList>
+						<Control>
+							<Name>confirm</Name>
+							<Type>hidden</Type>
+							<Label>Are you sure?</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{id}">StuffId</MapControl>
+						<MapControl name="confirm">{}</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+
+		
+	</ResourceList>
+</Stuff>

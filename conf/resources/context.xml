@@ -1,0 +1,129 @@
+<Component>
+	<ResourceList>
+		<Resource> <Name>/context</Name>
+			<Aggregate>ContextPolicy</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>List of Contexts</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/context</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition>
+						<Composition>
+							<Name>Context List</Name>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Class>context-list</Class>
+							<PageSize>100</PageSize>
+							<Table>context_list</Table>
+							<Order>context</Order>
+							<ColumnList>
+								<Column>
+									<Name>Context</Name>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/context/{context}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+									</OptionList>
+								</Column>						
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Create Context</Name>
+					<Type>POST</Type>
+					<Redirect>/context</Redirect>
+					<Command>CreateContext</Command>
+					<ControlList>
+						<Control>
+							<Name>context</Name>
+							<Type>text</Type>
+							<Label>Context</Label>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>textarea</Type>
+							<Rows>5</Rows>
+							<Cols>60</Cols>
+							<Label>Comments</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/context/{name}</Name>
+			<Aggregate>ContextPolicy</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation> <Name>Update Context</Name>
+					<Type>PUT</Type>
+					<OverridePost>Y</OverridePost>
+					<Redirect>/context</Redirect>
+					<Command>UpdateStuff</Command>
+					<Table>context_list</Table>
+					<FilterList>
+						<Filter>
+							<Field>context</Field> 
+							<Value>{name}</Value> 
+						</Filter>
+					</FilterList>
+					
+					<ControlList>
+						<Control>
+							<Name>context</Name>
+							<Type>text</Type>
+							<Label>Context</Label>
+							<Value>{context}</Value>
+						</Control>
+						<Control>
+							<Name>comments</Name>
+							<Type>text</Type>
+							<Label>Comments</Label>
+							<Value>{comments}</Value>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+				<Operation> <Name>Deactivate Context</Name>
+					<Type>DELETE</Type>
+					<Location>/context</Location>
+					<Command>DeactivateContext</Command>
+					<ControlList>
+						<Control>
+							<Name>confirm</Name>
+							<Type>hidden</Type>
+							<Label>Are you sure?</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{name}">Context</MapControl>
+						<MapControl name="confirm">{}</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+	</ResourceList>
+</Component>
