@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ProjectAggregate>
+	<Entity>Project</Entity>
+	<ActionList>
+		<Action>
+			<Command>CreateProject</Command>
+			<Type>Init</Type>
+			<Id>ProjectId</Id>
+			<InitMapList type="list">
+				<InitMap name="ProjectId">ProjectId</InitMap>
+				<InitMap name="Name">Name</InitMap>
+				<InitMap name="Purpose">Purpose</InitMap>
+				<InitMap name="Vision">Vision</InitMap>
+				<InitMap name="IsActive">IsActive</InitMap>
+				<InitMap name="FolderId">FolderId</InitMap>
+			</InitMapList>
+		</Action>
+		<Action>
+			<Command>UpdateProject</Command>
+			<Type>Update Project</Type>
+			<MapList type="list">
+				<Map name="ProjectId">ProjectId</Map>
+				<Map name="Name">Name</Map>
+				<Map name="Purpose">Purpose</Map>
+				<Map name="Vision">Vision</Map>
+				<Map name="IsActive">IsActive</Map>
+				<Map name="FolderId">FolderId</Map>
+			</MapList>
+		</Action>
+	</ActionList>
+</ProjectAggregate>

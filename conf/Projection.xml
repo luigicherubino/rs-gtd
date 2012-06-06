@@ -194,5 +194,44 @@
 				</AcceptEvent>
 			</AcceptEventList>
 		</View>
+		<View> <Name>project_list</Name>
+			<Table>project_list</Table>
+			<AcceptEventList>
+				<AcceptEvent>
+					<Event>ProjectCreated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>ProjectId</Key>
+					<MapList type="list">
+						<Map id="ProjectId">project_id</Map>
+						<Map id="Name">Name</Map>
+						<Map id="Purpose">Purpose</Map>
+						<Map id="Vision">Vision</Map>
+						<Map id="FolderId">Folder_Id</Map>
+						<Map id="IsActive">Is_Active</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>ProjectUpdated</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>ProjectId</Key>
+					<MapList type="list">
+						<Map id="ProjectId">project_id</Map>
+						<Map id="Name">Name</Map>
+						<Map id="Purpose">Purpose</Map>
+						<Map id="Vision">Vision</Map>
+						<Map id="FolderId">Folder_Id</Map>
+						<Map id="IsActive">Is_Active</Map>
+					</MapList>
+				</AcceptEvent>
+				<AcceptEvent>
+					<Event>ProjectDeleted</Event>
+					<Operation>Delete</Operation>
+					<Key>ProjectId</Key>
+					<MapList type="list">
+						<Map id="ProjectId">Project_Id</Map>
+					</MapList>
+				</AcceptEvent>
+			</AcceptEventList>
+		</View>
 	</ViewList>
 </Projection>

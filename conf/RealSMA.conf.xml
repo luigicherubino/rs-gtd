@@ -21,6 +21,7 @@
 				<Aggregate> <Name>ProcessAction</Name> <File>aggregates/ProcessAction.xml</File> </Aggregate>
 				<Aggregate> <Name>SomeDayPolicy</Name> <File>aggregates/SomeDayPolicy.xml</File> </Aggregate>
 				<Aggregate> <Name>ContextPolicy</Name> <File>aggregates/ContextPolicy.xml</File> </Aggregate>
+				<Aggregate> <Name>ProjectAggregate</Name> <File>aggregates/Project.xml</File> </Aggregate>
 			</AggregateList>
 			<!-- Connectors to Web Service -->
 			<ConnectorList>

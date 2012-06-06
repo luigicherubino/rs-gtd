@@ -35,6 +35,90 @@
 				</Event>
 			</EventList>
 		</Entity>
+		
+		<Entity> <Name>Folder</Name>
+			<Type>Generic Item</Type>
+			<PropertyList>
+				<Property> <Name>FolderId</Name> <Type>String</Type> </Property>
+				<Property> <Name>Name</Name> <Type>String</Type> </Property>
+				<Property> <Name>Comments</Name> <Type>String</Type> </Property>
+				<Property> <Name>IsActive</Name> <Type>String</Type> </Property>
+			</PropertyList>
+			<EventList>
+				<Event> <Name>FolderCreated</Name>
+					<Trigger>OnCreated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="FolderId">FolderId</PayLoad>
+						<PayLoad id="Name">Name</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+						<PayLoad id="IsActive">IsActive</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event> <Name>FolderUpdated</Name>
+					<Trigger>OnPayloadUpdated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="FolderId">FolderId</PayLoad>
+						<PayLoad id="Name">Name</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
+						<PayLoad id="IsActive">IsActive</PayLoad>
+					</PayLoadList>
+				</Event>
+			</EventList>
+		</Entity>
+
+		<Entity> <Name>Project</Name>
+			<Type>Generic Item</Type>
+			<PropertyList>
+				<Property>
+					<Name>ProjectId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Name</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Purpose</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Vision</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>IsActive</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>FolderId</Name>
+					<Type>String</Type>
+				</Property>
+			</PropertyList>
+			<EventList>
+				<Event> <Name>ProjectCreated</Name>
+					<Trigger>OnCreated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="ProjectId">ProjectId</PayLoad>
+						<PayLoad id="Name">Name</PayLoad>
+						<PayLoad id="Purpose">Purpose</PayLoad>
+						<PayLoad id="Vision">Vision</PayLoad>
+						<PayLoad id="FolderId">FolderId</PayLoad>
+						<PayLoad id="IsActive">IsActive</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event> <Name>ProjectUpdated</Name>
+					<Trigger>OnPayloadUpdated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="ProjectId">ProjectId</PayLoad>
+						<PayLoad id="Name">Name</PayLoad>
+						<PayLoad id="Purpose">Purpose</PayLoad>
+						<PayLoad id="Vision">Vision</PayLoad>
+						<PayLoad id="FolderId">FolderId</PayLoad>
+						<PayLoad id="IsActive">IsActive</PayLoad>
+					</PayLoadList>
+				</Event>
+			</EventList>
+		</Entity>
 
 		<Entity> <Name>ProcessStuff</Name>
 			<Type>Generic Item</Type>
@@ -95,6 +179,7 @@
 				</Event>
 				</EventList>
 		</Entity>
+
 		<Entity> <Name>ProcessAction</Name>
 			<Type>Generic Item</Type>
 			<PropertyList>
@@ -175,6 +260,7 @@
 				</Event>
 			</EventList>
 		</Entity>
+
 		<Entity> <Name>SomeDayTask</Name>
 			<Type>Generic Item</Type>
 			<PropertyList>

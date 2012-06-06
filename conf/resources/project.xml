@@ -1,0 +1,199 @@
+<Component>
+	<ResourceList>
+		<Resource> <Name>/projects</Name>
+			<Aggregate>ProjectAggregate</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>List of Projects</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/projects</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition>
+						<Composition>
+							<Name>Project List</Name>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Class>project-list</Class>
+							<PageSize>100</PageSize>
+							<Table>project_list</Table>
+							<Order>name</Order>
+							<ColumnList>
+								<Column>
+									<Name>Name</Name>
+									<HRef>/projects/{name}</HRef>
+							   	</Column>
+								<Column> <Name>Purpose</Name> </Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/projects/{name}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+										<Option>
+											<Uri>/projects/{name}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+									</OptionList>
+								</Column>						
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Create Project</Name>
+					<Type>POST</Type>
+					<Redirect>/projects</Redirect>
+					<Command>CreateProject</Command>
+					<ControlList>
+						<Control>
+							<Name>name</Name>
+							<Type>text</Type>
+							<Label>Project Name</Label>
+						</Control>
+						<Control>
+							<Label>Purpose</Label>
+							<Name>purpose</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Vision</Label>
+							<Name>vision</Name>
+							<Type>textarea</Type>
+							<Rows>5</Rows>
+							<Cols>60</Cols>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="name">Name</MapControl>
+						<MapControl name="purpose">Purpose</MapControl>
+						<MapControl name="vision">Vision</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource>
+			<Name>/projects/{name}</Name>
+			<Aggregate>ProjectAggregate</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Projects Details</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Commands</Name>
+							<Type>Command</Type>
+							<OptionList>
+								<Option>
+									<Uri>/projects</Uri>
+									<Operation>POST</Operation>
+								</Option>
+							</OptionList>
+						</Composition>
+						<Composition>
+							<Name>Project Details</Name>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Class>project-list</Class>
+							<PageSize>100</PageSize>
+							<Table>project_list</Table>
+							<Filter>name</Filter>
+							<Order>name</Order>
+							<ColumnList>
+								<Column>
+									<Name>Name</Name>
+									<HRef>/projects/{name}</HRef>
+							   	</Column>
+								<Column> <Name>Purpose</Name> </Column>
+								<Column> <Name>Vision</Name> <Type>markdown</Type> </Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/projects/{name}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+										<Option>
+											<Uri>/projects/{name}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+									</OptionList>
+								</Column>						
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation> <Name>Update Project</Name>
+					<Type>PUT</Type>
+					<OverridePost>Y</OverridePost>
+					<Redirect>/projects</Redirect>
+					<Command>UpdateProject</Command>
+					<Table>project_list</Table>
+					<FilterList>
+						<Filter>
+							<Field>name</Field> 
+							<Value>{name}</Value> 
+						</Filter>
+					</FilterList>
+					
+					<ControlList>
+						<Control>
+							<Name>name</Name>
+							<Value>{name}</Value>
+							<Type>text</Type>
+							<Label>Project Name</Label>
+						</Control>
+						<Control>
+							<Label>Purpose</Label>
+							<Name>purpose</Name>
+							<Value>{purpose}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Vision</Label>
+							<Name>vision</Name>
+							<Value>{vision}</Value>
+							<Type>textarea</Type>
+							<Rows>5</Rows>
+							<Cols>60</Cols>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="{project_id}">ProjectId</MapControl>
+						<MapControl name="name">Name</MapControl>
+						<MapControl name="purpose">Purpose</MapControl>
+						<MapControl name="vision">Vision</MapControl>
+					</MapControlList>
+				</Operation>
+				<Operation> <Name>Deactivate Project</Name>
+					<Type>DELETE</Type>
+					<Location>/projects</Location>
+					<Command>DeactivateProject</Command>
+					<ControlList>
+						<Control>
+							<Name>confirm</Name>
+							<Type>hidden</Type>
+							<Label>Are you sure?</Label>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{name}">Name</MapControl>
+						<MapControl name="confirm">{}</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+	</ResourceList>
+</Component>

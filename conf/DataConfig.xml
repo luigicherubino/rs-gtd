@@ -35,6 +35,12 @@
 					<AutoMap>Y</AutoMap>
 					<KeyProperty>context</KeyProperty>
 				</DataComponentMap>
+				<DataComponentMap> <Name>project_list</Name>
+					<DataSourceName>Test DB</DataSourceName>
+					<Table>project_list</Table>
+					<AutoMap>Y</AutoMap>
+					<KeyProperty>project_id</KeyProperty>
+				</DataComponentMap>
 			</DataComponentMapList>
 		</DataComponentStore>
 	</DataComponentStoreList>
@@ -96,6 +102,16 @@
 						<Col id="description">varchar 254</Col>
 						<Col id="comments">varchar 254</Col>
 						<Col id="tickle_date">datetime</Col>
+					</ColList>
+				</Table>
+				<Table> <Name>project_list</Name>
+					<ColList type="list">
+						<Col id="project_id">varchar 15</Col>
+						<Col id="folder_id">varchar 15</Col>
+						<Col id="name">varchar 100</Col>
+						<Col id="purpose">varchar 254</Col>
+						<Col id="vision">varchar 254</Col>
+						<Col id="is_active">varchar 1</Col>
 					</ColList>
 				</Table>
 			</TableList>

@@ -163,6 +163,46 @@
 						</Property>
 					</PropertyList>
 				</Message>
+				<!-- Project Related Events -->
+				<Message> <Name>ProjectCreated</Name>
+					<PropertyList>
+						<Property> <Name>ProjectId</Name> </Property>
+						<Property> <Name>Name</Name> </Property>
+						<Property> <Name>Purpose</Name> </Property>
+						<Property> <Name>Vision</Name> </Property>
+						<Property> <Name>IsActive</Name> </Property>
+						<Property> <Name>Folder</Name> </Property>
+					</PropertyList>
+				</Message>
+					<Message> <Name>ProjectUpdated</Name>
+					<PropertyList>
+						<Property> <Name>ProjectId</Name> </Property>
+						<Property> <Name>Name</Name> </Property>
+						<Property> <Name>Purpose</Name> </Property>
+						<Property> <Name>Vision</Name> </Property>
+						<Property> <Name>IsActive</Name> </Property>
+						<Property> <Name>Folder</Name> </Property>
+					</PropertyList>
+				</Message>
+				<!-- Folder Related Events -->
+				<Message> <Name>FolderCreated</Name>
+					<PropertyList>
+						<Property> <Name>FolderId</Name> </Property>
+						<Property> <Name>ParentFolderId</Name> </Property>
+						<Property> <Name>Name</Name> </Property>
+						<Property> <Name>IsActive</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
+					</PropertyList>
+				</Message>
+					<Message> <Name>FolderUpdated</Name>
+					<PropertyList>
+						<Property> <Name>FolderId</Name> </Property>
+						<Property> <Name>ParentFolderId</Name> </Property>
+						<Property> <Name>Name</Name> </Property>
+						<Property> <Name>IsActive</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
+					</PropertyList>
+				</Message>
 			</MessageList>
 		</MessageSet>
 		<MessageSet>

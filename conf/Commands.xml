@@ -184,5 +184,33 @@
 				</Property>
 			</PropertyList>
 		</Command>
+
+		<Command> <Name>CreateProject</Name>
+			<PropertyList>
+				<Property> <Name>ProjectId</Name> <Default>uid</Default> </Property>
+				<Property> <Name>Name</Name> </Property>
+				<Property> <Name>Purpose</Name> </Property>
+				<Property> <Name>Vision</Name> </Property>
+				<Property> <Name>IsActive</Name> </Property>
+				<Property> <Name>FolderId</Name> </Property>
+			</PropertyList>
+		</Command>
+		<Command> <Name>UpdateProject</Name>
+			<PropertyList>
+				<Property> <Name>ProjectId</Name> </Property>
+				<Property> <Name>Name</Name> </Property>
+				<Property> <Name>Purpose</Name> </Property>
+				<Property> <Name>Vision</Name> </Property>
+				<Property> <Name>IsActive</Name> </Property>
+				<Property> <Name>FolderId</Name> </Property>
+			</PropertyList>
+		</Command>
+		<Command> <Name>DeactivateProject</Name>
+			<PropertyList>
+				<Property> <Name>ProjectId</Name> </Property>
+				<Property> <Name>Name</Name> </Property>
+			</PropertyList>
+		</Command>
+
 	</CommandList>
 </GTDCommands>
