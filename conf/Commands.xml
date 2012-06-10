@@ -191,7 +191,6 @@
 				<Property> <Name>Name</Name> </Property>
 				<Property> <Name>Purpose</Name> </Property>
 				<Property> <Name>Vision</Name> </Property>
-				<Property> <Name>IsActive</Name> </Property>
 				<Property> <Name>FolderId</Name> </Property>
 			</PropertyList>
 		</Command>
@@ -201,7 +200,6 @@
 				<Property> <Name>Name</Name> </Property>
 				<Property> <Name>Purpose</Name> </Property>
 				<Property> <Name>Vision</Name> </Property>
-				<Property> <Name>IsActive</Name> </Property>
 				<Property> <Name>FolderId</Name> </Property>
 			</PropertyList>
 		</Command>
@@ -209,6 +207,13 @@
 			<PropertyList>
 				<Property> <Name>ProjectId</Name> </Property>
 				<Property> <Name>Name</Name> </Property>
+			</PropertyList>
+		</Command>
+
+		<Command> <Name>AssignTaskToProject</Name>
+			<PropertyList>
+				<Property> <Name>ProjectId</Name> </Property>
+				<Property> <Name>ActionId</Name> </Property>
 			</PropertyList>
 		</Command>
 

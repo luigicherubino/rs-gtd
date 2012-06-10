@@ -1,6 +1,5 @@
-dl.rs-item.stuff 
-{
-	width: 100%;
+img, embed, object, video {
+  max-width: 100%;
 }
 
 dd.rs-title
@@ -14,6 +13,7 @@ table.rs-item
 	width: 95%;
 
 }
+
 table.rs-item td,
 table.rs-item th
 {
@@ -27,4 +27,22 @@ table.rs-item th
 	background-color:#e2e2e2;
 	color:black;
 }
+
+div.rs-composition.stuff dl
+{
+	border: 1px solid;
+}
+
+div.rs-composition.stuff * ul.rs-links,
+div.rs-composition.stuff * div.rs-options {
+	padding: 0px;
+	margin: 0px 0px 0px 20px;
+}
+div.rs-composition.stuff * div.rs-options li {
+	display: block;
+	padding-right: 10px;
+	float: left;
+}
+div.rs-composition.stuff * div.rs-options-inline-clear { clear: left; }
+
 

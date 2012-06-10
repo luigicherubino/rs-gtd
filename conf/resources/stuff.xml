@@ -33,15 +33,15 @@
 											<Operation>DELETE</Operation>
 										</Option>
 										<Option>
-											<Label>Actionable</Label>
+											<Label>Process</Label>
 											<Uri>/nextactions</Uri>
-											<UriValues>stuff_id={stuff_id}</UriValues>
+											<UriValues>stuff-id={stuff_id}</UriValues>
 											<Operation>POST</Operation>
 										</Option>
 										<Option>
 											<Label>Defer</Label>
 											<Uri>/someday</Uri>
-											<UriValues>stuff_id={stuff_id}</UriValues>
+											<UriValues>stuff-id={stuff_id}</UriValues>
 											<Operation>POST</Operation>
 										</Option>
 										<Option>
@@ -180,6 +180,7 @@
 					<Name>Trash</Name>
 					<Type>DELETE</Type>
 					<Location>/stuff</Location>
+					<Redirect>/stuff</Redirect>
 					<Command>EliminateStuff</Command>
 					<ControlList>
 						<Control>

@@ -93,6 +93,10 @@
 					<Name>FolderId</Name>
 					<Type>String</Type>
 				</Property>
+				<Property>
+					<Name>Tasks</Name>
+					<Type>ProjectTask[0..*]</Type>
+				</Property>
 			</PropertyList>
 			<EventList>
 				<Event> <Name>ProjectCreated</Name>
@@ -100,6 +104,7 @@
 					<PayLoadList type="list">
 						<PayLoad id="ProjectId">ProjectId</PayLoad>
 						<PayLoad id="Name">Name</PayLoad>
+						<PayLoad id="Uri">{uri:Name}</PayLoad>
 						<PayLoad id="Purpose">Purpose</PayLoad>
 						<PayLoad id="Vision">Vision</PayLoad>
 						<PayLoad id="FolderId">FolderId</PayLoad>
@@ -111,6 +116,7 @@
 					<PayLoadList type="list">
 						<PayLoad id="ProjectId">ProjectId</PayLoad>
 						<PayLoad id="Name">Name</PayLoad>
+						<PayLoad id="Uri">{uri:Name}</PayLoad>
 						<PayLoad id="Purpose">Purpose</PayLoad>
 						<PayLoad id="Vision">Vision</PayLoad>
 						<PayLoad id="FolderId">FolderId</PayLoad>
@@ -118,6 +124,19 @@
 					</PayLoadList>
 				</Event>
 			</EventList>
+		</Entity>
+
+		<Entity> <Name>ProjectTask</Name>
+			<Type>Generic Item</Type>
+			<PropertyList>
+				<Property> <Name>TaskId</Name> <Type>String</Type> </Property>
+			</PropertyList>
+			<ColaborationList>
+				<Colaboration>
+					<Entity>Project</Entity>
+					<Type>Transaction - Specific</Type>
+				</Colaboration>
+			</ColaborationList>
 		</Entity>
 
 		<Entity> <Name>ProcessStuff</Name>
@@ -183,12 +202,13 @@
 		<Entity> <Name>ProcessAction</Name>
 			<Type>Generic Item</Type>
 			<PropertyList>
-				<Property>
-					<Name>ActionId</Name>
+				<Property> <Name>ActionId</Name>
 					<Type>String</Type>
 				</Property>
-				<Property>
-					<Name>StuffId</Name>
+				<Property> <Name>StuffId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property> <Name>ProjectId</Name>
 					<Type>String</Type>
 				</Property>
 				<Property>
@@ -238,6 +258,7 @@
 					<Trigger>OnUpdate DateDone</Trigger>
 					<PayLoadList type="list">
 						<PayLoad id="ActionId">ActionId</PayLoad>
+						<PayLoad id="ProjectId">ProjectId</PayLoad>
 						<PayLoad id="Date">Outcome</PayLoad>
 						<PayLoad id="ProjectId"></PayLoad>
 					</PayLoadList>
@@ -248,6 +269,7 @@
 					<PayLoadList type="list">
 						<PayLoad id="ActionId">ActionId</PayLoad>
 						<PayLoad id="StuffId">StuffId</PayLoad>
+						<PayLoad id="ProjectId">ProjectId</PayLoad>
 						<PayLoad id="Description">Description</PayLoad>
 						<PayLoad id="Context">Context</PayLoad>
 						<PayLoad id="Outcome">Outcome</PayLoad>
@@ -256,6 +278,14 @@
 						<PayLoad id="Energy">Energy</PayLoad>
 						<PayLoad id="Priority">Priority</PayLoad>
 						<PayLoad id="Comments">Comments</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event> <Name>TaskAssignedToProject</Name>
+					<Trigger>OnPropertySet</Trigger>
+					<Property>ProjectId</Property>
+					<PayLoadList type="list">
+						<PayLoad id="ActionId">{ActionId}</PayLoad>
+						<PayLoad id="ProjectId">ProjectId</PayLoad>
 					</PayLoadList>
 				</Event>
 			</EventList>

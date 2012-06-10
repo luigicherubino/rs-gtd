@@ -133,6 +133,15 @@
 						<Map id="Comments">comments</Map>
 					</MapList>
 				</AcceptEvent>
+				<AcceptEvent>
+					<Event>TaskAssignedToProject</Event>
+					<Operation>CreateOrUpdate</Operation>
+					<Key>ActionId</Key>
+					<MapList type="list">
+						<Map id="ActionId">id</Map>
+						<Map id="ProjectId">project_id</Map>
+					</MapList>
+				</AcceptEvent>
 			</AcceptEventList>
 		</View>
 		<View> <Name>someday_list</Name>
@@ -204,6 +213,7 @@
 					<MapList type="list">
 						<Map id="ProjectId">project_id</Map>
 						<Map id="Name">Name</Map>
+						<Map id="Uri">uri</Map>
 						<Map id="Purpose">Purpose</Map>
 						<Map id="Vision">Vision</Map>
 						<Map id="FolderId">Folder_Id</Map>
@@ -217,6 +227,7 @@
 					<MapList type="list">
 						<Map id="ProjectId">project_id</Map>
 						<Map id="Name">Name</Map>
+						<Map id="Uri">uri</Map>
 						<Map id="Purpose">Purpose</Map>
 						<Map id="Vision">Vision</Map>
 						<Map id="FolderId">Folder_Id</Map>

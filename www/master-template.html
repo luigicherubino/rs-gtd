@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>$ws-name - $ws-operation</title>
+<meta name="viewport" content="width=device-width"/>
+<title>$ws-name - $ws-operation</title>
 	<link href="/style.css" rel="stylesheet" type="text/css" />
 	<link href="/content.css" rel="stylesheet" type="text/css" />
 </head>
@@ -10,22 +11,22 @@
   <div class="content">
   
 	<div class="top">
-      <h1>RealSMA GTD</h1>
+		<h1><a href="/">RealSMA GTD</a></h1>
     </div>
-
-    <div class="main">
-      $content
-    </div><!-- end: .main -->
-
-	<div class="right">
+	<div class="left menu">
 		<ul>
-			<li><a href="/stuff/@post">Collect</a></li>
+			<li><a href="/stuff/@post?rs-redir=/stuff/@post">Collect</a></li>
 			<li><a href="/stuff">Process</a></li>
 			<li><a href="/nextactions">Next actions</a></li>
 			<li><a href="/someday">Someday/Maybe</a></li>
 			<li><a href="/projects">Projects</a></li>
 		</ul>
-  </div><!-- left: .main -->
+  	</div><!-- left: .main -->
+
+    <div class="main">
+      $content
+    </div><!-- end: .main -->
+
     </div><!-- end: .content -->
 </div>
 </html>

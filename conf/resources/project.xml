@@ -29,18 +29,19 @@
 							<ColumnList>
 								<Column>
 									<Name>Name</Name>
-									<HRef>/projects/{name}</HRef>
+									<HRef>/projects/{uri}</HRef>
 							   	</Column>
 								<Column> <Name>Purpose</Name> </Column>
 								<Column>
 									<Type>Options</Type>
 									<OptionList>
 										<Option>
-											<Uri>/projects/{name}</Uri>
+											<Uri>/projects/{uri}</Uri>
+											<Redirect>/projects/{Aggregate:uri:Name}</Redirect>
 											<Operation>PUT</Operation>
 										</Option>
 										<Option>
-											<Uri>/projects/{name}</Uri>
+											<Uri>/projects/{uri}</Uri>
 											<Operation>DELETE</Operation>
 										</Option>
 									</OptionList>
@@ -82,8 +83,7 @@
 				</Operation>
 			</OperationList>
 		</Resource>
-		<Resource>
-			<Name>/projects/{name}</Name>
+		<Resource> <Name>/projects/{project-uri}</Name>
 			<Aggregate>ProjectAggregate</Aggregate>
 			<Type>WebService</Type>
 			<OperationList>
@@ -92,28 +92,18 @@
 					<Type>GET</Type>
 					<CompositionList>
 						<Composition>
-							<Name>Commands</Name>
-							<Type>Command</Type>
-							<OptionList>
-								<Option>
-									<Uri>/projects</Uri>
-									<Operation>POST</Operation>
-								</Option>
-							</OptionList>
-						</Composition>
-						<Composition>
 							<Name>Project Details</Name>
 							<Type>Query</Type>
 							<QueryType>Form</QueryType>
 							<Class>project-list</Class>
 							<PageSize>100</PageSize>
 							<Table>project_list</Table>
-							<Filter>name</Filter>
+							<Filter>uri</Filter>
 							<Order>name</Order>
 							<ColumnList>
 								<Column>
-									<Name>Name</Name>
-									<HRef>/projects/{name}</HRef>
+									<Value>Project: {Name}</Value>
+									<Class>rs-title</Class>
 							   	</Column>
 								<Column> <Name>Purpose</Name> </Column>
 								<Column> <Name>Vision</Name> <Type>markdown</Type> </Column>
@@ -121,15 +111,49 @@
 									<Type>Options</Type>
 									<OptionList>
 										<Option>
-											<Uri>/projects/{name}</Uri>
+											<Uri>/projects/{project-uri}</Uri>
 											<Operation>PUT</Operation>
-										</Option>
-										<Option>
-											<Uri>/projects/{name}</Uri>
-											<Operation>DELETE</Operation>
 										</Option>
 									</OptionList>
 								</Column>						
+							</ColumnList>
+						</Composition>
+						<Composition>
+							<Name>ProjectTaskList</Name>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Class>project-task-list</Class>
+							<PageSize>100</PageSize>
+							<Table>next_action_list</Table>
+							<FilterList>
+								<Filter>
+									<Field>project_id</Field>
+									<Value>{Project Details:project_id}</Value>
+								</Filter>
+							</FilterList>
+							<Order>when</Order>
+							<ColumnList>
+								<Column>
+									<Name>Description</Name>
+									<HRef>/nextactions/{id}</HRef>
+							   	</Column>
+								<Column> <Name>Outcome</Name> </Column>
+								<Column> <Name>Comments</Name> <Type>markdown</Type> </Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/nextactions/{id}</Uri>
+											<Operation>DELETE</Operation>
+											<UriValues>rs-test</UriValues>
+										</Option>
+										<Option>
+											<Label>Move to project</Label>
+											<Uri>/nextactions/{id}/project</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+									</OptionList>
+								</Column>
 							</ColumnList>
 						</Composition>
 					</CompositionList>
@@ -142,11 +166,10 @@
 					<Table>project_list</Table>
 					<FilterList>
 						<Filter>
-							<Field>name</Field> 
-							<Value>{name}</Value> 
+							<Field>uri</Field> 
+							<Value>{project-uri}</Value> 
 						</Filter>
 					</FilterList>
-					
 					<ControlList>
 						<Control>
 							<Name>name</Name>
@@ -192,6 +215,30 @@
 						<MapControl name="{name}">Name</MapControl>
 						<MapControl name="confirm">{}</MapControl>
 					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/projects/{project-uri}/tasks</Name>
+			<Aggregate>ProjectAggregate</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>ProjectTaskList</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Project</Name>
+							<Type>Query</Type>
+							<Table>project_list</Table>
+							<FilterList>
+								<Filter>
+									<Field>uri</Field>
+									<Value>{project-uri}</Value>
+								</Filter>
+							</FilterList>
+							<NoColumns>Y</NoColumns>
+						</Composition>
+					</CompositionList>
 				</Operation>
 			</OperationList>
 		</Resource>

@@ -19,5 +19,13 @@
 				<InitMap id="Comments">Comments</InitMap>
 			</InitMapList>
 		</Action>
+		<Action>
+			<Command>AssignTaskToProject</Command>
+			<Type>Update ProcessAction</Type>
+			<MapList type="list">
+				<Map name="ProjectId">ProjectId</Map>	
+				<Map name="ActionId">ActionId</Map>	
+			</MapList>
+		</Action>
 	</ActionList>
 </ProcessAction>

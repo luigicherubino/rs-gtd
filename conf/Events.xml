@@ -5,6 +5,13 @@
 			<Name>GTD Events</Name>
 			<Type>Event</Type>
 			<MessageList>
+					<Message> <Name>TaskAssignedToProject</Name>
+					<PropertyList>
+						<Property> <Name>ProjectId</Name> </Property>
+						<Property> <Name>TaskId</Name> </Property>
+					</PropertyList>
+				</Message>
+
 				<Message> <Name>StuffCollected</Name>
 					<PropertyList>
 						<Property>
@@ -168,6 +175,7 @@
 					<PropertyList>
 						<Property> <Name>ProjectId</Name> </Property>
 						<Property> <Name>Name</Name> </Property>
+						<Property> <Name>Uri</Name> <ReadModelDefault>{uri:Name}</ReadModelDefault> </Property>
 						<Property> <Name>Purpose</Name> </Property>
 						<Property> <Name>Vision</Name> </Property>
 						<Property> <Name>IsActive</Name> </Property>
@@ -178,6 +186,7 @@
 					<PropertyList>
 						<Property> <Name>ProjectId</Name> </Property>
 						<Property> <Name>Name</Name> </Property>
+						<Property> <Name>Uri</Name> <ReadModelDefault>{uri:Name}</ReadModelDefault> </Property>
 						<Property> <Name>Purpose</Name> </Property>
 						<Property> <Name>Vision</Name> </Property>
 						<Property> <Name>IsActive</Name> </Property>
@@ -209,8 +218,7 @@
 			<Name>View Events</Name>
 			<Type>Events</Type>
 			<MessageList>
-				<Message>
-					<Name>ViewCreated</Name>
+				<Message> <Name>ViewCreated</Name>
 					<PropertyList>
 						<Property>
 							<Name>Name</Name>
@@ -223,8 +231,7 @@
 						</Property>
 					</PropertyList>
 				</Message>
-				<Message>
-					<Name>ViewUpdated</Name>
+				<Message> <Name>ViewUpdated</Name>
 					<PropertyList>
 						<Property>
 							<Name>Name</Name>
@@ -237,8 +244,7 @@
 						</Property>
 					</PropertyList>
 				</Message>
-				<Message>
-					<Name>ViewRemoved</Name>
+				<Message> <Name>ViewRemoved</Name>
 					<PropertyList>
 						<Property>
 							<Name>Name</Name>

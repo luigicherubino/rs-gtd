@@ -52,7 +52,7 @@
                     <FilterList>
                         <Filter>
                             <Field>stuff_id</Field>
-                            <Value>{query:stuff_id}</Value>
+                            <Value>{query:stuff-id}</Value>
                         </Filter>
                     </FilterList>
 					<ControlList>

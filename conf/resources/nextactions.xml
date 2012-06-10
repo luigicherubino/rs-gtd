@@ -14,6 +14,14 @@
 							<Type>Query</Type>
 							<QueryType>List</QueryType>
 							<Table>NEXT_ACTION_LIST</Table>
+							<JoinList>
+								<Join>
+									<Name>Project</Name>
+									<Table>project_list</Table>
+									<Key>project_id</Key>
+									<On>project_id</On>
+								</Join>	
+							</JoinList>
 							<ColumnList>
 								<Column>
 									<Value>Context</Value>
@@ -21,7 +29,7 @@
 								<Column>
 									<Class>rs-h1</Class>
 									<Name>Action</Name>
-									<Value>NEXT_ACTION</Value>
+									<Value>Description</Value>
 									<Href>/nextactions/{id}</Href>
 								</Column>
 									<Column>
@@ -29,7 +37,13 @@
 									<Value>OUTCOME</Value>
 								</Column>
 								<Column>
-									<Value>Description</Value>
+									<Value>NEXT_ACTION</Value>
+								</Column>
+								<Column>
+									<Name>Project</Name>
+									<Value>{Project:name}</Value>
+									<EmptyValue>{}</EmptyValue>
+									<HRef>/projects/{Project:uri}</HRef>
 								</Column>
 								<Column>
 									<Type>Options</Type>
@@ -38,6 +52,10 @@
 											<Uri>/nextactions/{id}</Uri>
 											<Operation>DELETE</Operation>
 											<UriValues>rs-test</UriValues>
+										</Option>
+										<Option>
+											<Uri>/nextactions/{id}/project</Uri>
+											<Operation>PUT</Operation>
 										</Option>
 									</OptionList>
 								</Column>
@@ -50,12 +68,12 @@
 					<Aggregate>ProcessAction</Aggregate>
 					<Command>ActionStuff</Command>
 					<Type>POST</Type>
-					<Redirect>/nextactions/{id}</Redirect>
+					<Redirect>/stuff</Redirect>
                     <View>stuff_list</View>
                     <FilterList>
                         <Filter>
                             <Field>stuff_id</Field>
-                            <Value>{query:stuff_id}</Value>
+                            <Value>{query:stuff-id}</Value>
                         </Filter>
                     </FilterList>
 					<ControlList>
@@ -131,9 +149,7 @@
 			<Aggregate>ProcessAction</Aggregate>
 			<Type>WebService</Type>
 			<OperationList>
-				<Operation>
-					<Name>Action Details</Name>
-					<Type>GET</Type>
+				<Operation> <Name>Action Details</Name> <Type>GET</Type>
 					<CompositionList>
 						<Composition>
 							<Name>Next Action Details</Name>
@@ -181,9 +197,7 @@
 						</Composition>
 					</CompositionList>
 				</Operation>
-				<Operation>
-					<Name>Done</Name>
-					<Type>DELETE</Type>
+				<Operation> <Name>Done</Name> <Type>DELETE</Type>
 					<Location>/nextactions</Location>
 					<OverridePost>Y</OverridePost>
 					<Command>DoAction</Command>
@@ -199,6 +213,41 @@
 					<MapControlList type="list">
 						<MapControl name="{id}">ActionId</MapControl>
 						<MapControl name="date">Date</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/nextactions/{id}/project</Name>
+			<Aggregate>ProcessAction</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation> <Name>AssignTaskToProject</Name> <Type>PUT</Type>
+					<OverridePost>Y</OverridePost>
+					<Redirect>/projects/{name}</Redirect>
+					<Command>AssignTaskToProject</Command>
+					<Table>NEXT_ACTION_LIST</Table>
+					<FilterList>
+						<Filter>
+							<Field>id</Field> 
+							<Value>{id}</Value> 
+						</Filter>
+					</FilterList>
+					<ControlList>
+						<Control>
+							<Label>Project</Label>
+							<Name>project-id</Name>
+							<Type>select</Type>
+							<View>project_list</View>
+							<Option>name</Option>
+							<Value>project_id</Value>
+							<FilterColumn>name</FilterColumn>
+							<!-- TODO: Filter on IS_ACTIVE -->
+							<FilterValue>is not null</FilterValue>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="{id}">ActionId</MapControl>
+						<MapControl name="project-id">ProjectId</MapControl>
 					</MapControlList>
 				</Operation>
 			</OperationList>

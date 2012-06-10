@@ -66,6 +66,7 @@
 				<Table> <Name>next_action_list</Name>
 					<ColList type="list">
 						<Col id="id">varchar 15</Col>
+						<Col id="project_id">varchar 15</Col>
 						<Col id="status">varchar 20</Col>
 						<Col id="when">datetime</Col>
 						<Col id="description">varchar 200</Col>
@@ -109,6 +110,7 @@
 						<Col id="project_id">varchar 15</Col>
 						<Col id="folder_id">varchar 15</Col>
 						<Col id="name">varchar 100</Col>
+						<Col id="uri">varchar 200</Col>
 						<Col id="purpose">varchar 254</Col>
 						<Col id="vision">varchar 254</Col>
 						<Col id="is_active">varchar 1</Col>
