@@ -19,6 +19,7 @@
 				</Property>
 			</PropertyList>
 		</Command>
+
 		<Command> <Name>CollectStuff</Name>
 			<Description>Collect everything, outside your head</Description>
 			<PropertyList>
@@ -140,7 +141,24 @@
 				</Property>
 			</PropertyList>
 		</Command>
-		<Command> <Name>DoAction</Name>
+
+		<Command> <Name>UpdateAction</Name>
+			<PropertyList>
+				<Property>
+					<Name>ActionId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property> <Name>Description</Name> <Type>String</Type> </Property>
+				<Property> <Name>Context</Name> <Type>String</Type> </Property>
+				<Property> <Name>Outcome</Name> <Type>String</Type> </Property>
+				<Property> <Name>NextAction</Name> <Type>String</Type> </Property>
+				<Property> <Name>Time</Name> <Type>String</Type> </Property>
+				<Property> <Name>Energy</Name> <Type>String</Type> </Property>
+				<Property> <Name>Priority</Name> <Type>String</Type> </Property>
+				<Property> <Name>Comments</Name> <Type>String</Type> </Property>
+				</PropertyList>
+		</Command>
+		<Command> <Name>CompleteAction</Name>
 			<PropertyList>
 				<Property>
 					<Name>ActionId</Name>
@@ -152,6 +170,19 @@
 				</Property>
 				</PropertyList>
 		</Command>
+		<Command> <Name>CancelAction</Name>
+			<PropertyList>
+				<Property>
+					<Name>ActionId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Date</Name>
+					<Type>String</Type>
+				</Property>
+				</PropertyList>
+		</Command>
+
 		<Command> <Name>EliminateSomeDay</Name>
 			<PropertyList>
 				<Property>
@@ -207,6 +238,30 @@
 			<PropertyList>
 				<Property> <Name>ProjectId</Name> </Property>
 				<Property> <Name>Name</Name> </Property>
+			</PropertyList>
+		</Command>
+
+		<Command> <Name>CreateProjectOutcome</Name>
+			<PropertyList>
+				<Property> <Name>OutcomeId</Name> <Default>uid</Default> </Property>
+				<Property> <Name>ProjectId</Name> </Property>
+				<Property> <Name>Status</Name> </Property>
+				<Property> <Name>Name</Name> </Property>
+				<Property> <Name>Comments</Name> </Property>
+			</PropertyList>
+		</Command>
+		<Command> <Name>UpdateProjectOutcome</Name>
+			<PropertyList>
+				<Property> <Name>OutcomeId</Name> </Property>
+				<Property> <Name>ProjectId</Name> </Property>
+				<Property> <Name>Name</Name> </Property>
+				<Property> <Name>Comments</Name> </Property>
+			</PropertyList>
+		</Command>
+		<Command> <Name>DeactivateProjectOutcome</Name>
+			<PropertyList>
+				<Property> <Name>OutcomeId</Name> </Property>
+				<Property> <Name>Reason</Name> </Property>
 			</PropertyList>
 		</Command>
 

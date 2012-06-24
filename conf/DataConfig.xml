@@ -17,6 +17,12 @@
 					<AutoMap>Y</AutoMap>
 					<KeyProperty>stuff_id</KeyProperty>
 				</DataComponentMap>
+				<DataComponentMap> <Name>project_outcomes</Name>
+					<DataSourceName>Test DB</DataSourceName>
+					<Table>project_outcomes</Table>
+					<AutoMap>Y</AutoMap>
+					<KeyProperty>outcome_id</KeyProperty>
+				</DataComponentMap>
 				<DataComponentMap> <Name>next_action_list</Name>
 					<DataSourceName>Test DB</DataSourceName>
 					<Table>next_action_list</Table>
@@ -114,6 +120,15 @@
 						<Col id="purpose">varchar 254</Col>
 						<Col id="vision">varchar 254</Col>
 						<Col id="is_active">varchar 1</Col>
+					</ColList>
+				</Table>
+				<Table> <Name>project_outcomes</Name>
+					<ColList type="list">
+						<Col id="outcome_id">varchar 15</Col>
+						<Col id="project_id">varchar 15</Col>
+						<Col id="name">varchar 100</Col>
+						<Col id="status">varchar 200</Col>
+						<Col id="comments">varchar 254</Col>
 					</ColList>
 				</Table>
 			</TableList>

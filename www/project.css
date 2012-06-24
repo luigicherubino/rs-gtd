@@ -1,0 +1,26 @@
+dd.rs-title { 
+	font-size: 150%;
+}
+
+div.project-outcome-list
+{
+	margin: 0em 0em 1.0em 0em;
+}
+
+span.rs-comp-title {
+	font-weight: bold;
+}
+
+div.project-outcome-list * { margin: 0; padding: 0;}
+
+div.project-outcome-list * dl
+{
+
+}
+div.project-outcome-list * dd
+{
+	margin: 0em 0em 0em 1.5em;
+	display: list-item;
+	float: left;
+}
+

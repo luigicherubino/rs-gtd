@@ -15,8 +15,7 @@
 				<InitMap name="FolderId">FolderId</InitMap>
 			</InitMapList>
 		</Action>
-		<Action>
-			<Command>UpdateProject</Command>
+		<Action> <Command>UpdateProject</Command>
 			<Type>Update Project</Type>
 			<MapList type="list">
 				<Map name="ProjectId">ProjectId</Map>
@@ -25,6 +24,33 @@
 				<Map name="Vision">Vision</Map>
 				<Map name="IsActive">IsActive</Map>
 				<Map name="FolderId">FolderId</Map>
+			</MapList>
+		</Action>
+		<Action> <Command>CreateProjectOutcome</Command>
+			<Type>Add Outcome</Type>
+			<MapList type="list">
+				<Map name="OutcomeId">OutcomeId</Map>
+				<Map name="Name">Name</Map>
+				<Map name="Status">Status</Map>
+				<Map name="Comments">Comments</Map>
+			</MapList>
+		</Action>
+		<Action>
+			<Command>UpdateProjectOutcome</Command>
+			<Type>Update Outcome</Type>
+			<MapList type="list">
+				<Map name="OutcomeId">OutcomeId</Map>
+				<Map name="Name">Name</Map>
+				<Map name="Status">Status</Map>
+				<Map name="Comments">Comments</Map>
+			</MapList>
+		</Action>
+		<Action>
+			<Command>DeactivateProjectOutcome</Command>
+			<Type>Delete Outcome</Type>
+			<MapList type="list">
+				<Map name="OutcomeId">OutcomeId</Map>
+				<Map name="Reason">Reason</Map>
 			</MapList>
 		</Action>
 	</ActionList>

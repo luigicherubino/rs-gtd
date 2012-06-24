@@ -12,7 +12,7 @@
 							<Class>next-action-list</Class>
 							<TemplateVar>Content</TemplateVar>
 							<Type>Query</Type>
-							<QueryType>List</QueryType>
+							<QueryType>Form</QueryType>
 							<Table>NEXT_ACTION_LIST</Table>
 							<JoinList>
 								<Join>
@@ -27,37 +27,20 @@
 									<Value>Context</Value>
 								</Column>
 								<Column>
-									<Class>rs-h1</Class>
-									<Name>Action</Name>
+									<Class>rs-title</Class>
 									<Value>Description</Value>
 									<Href>/nextactions/{id}</Href>
 								</Column>
-									<Column>
-									<Name>Outcome</Name>
-									<Value>OUTCOME</Value>
-								</Column>
 								<Column>
-									<Value>NEXT_ACTION</Value>
-								</Column>
-								<Column>
-									<Name>Project</Name>
 									<Value>{Project:name}</Value>
 									<EmptyValue>{}</EmptyValue>
 									<HRef>/projects/{Project:uri}</HRef>
 								</Column>
 								<Column>
-									<Type>Options</Type>
-									<OptionList>
-										<Option>
-											<Uri>/nextactions/{id}</Uri>
-											<Operation>DELETE</Operation>
-											<UriValues>rs-test</UriValues>
-										</Option>
-										<Option>
-											<Uri>/nextactions/{id}/project</Uri>
-											<Operation>PUT</Operation>
-										</Option>
-									</OptionList>
+									<Value>NEXT_ACTION</Value>
+								</Column>
+								<Column>
+									<Value>OUTCOME</Value>
 								</Column>
 							</ColumnList>
 						</Composition>
@@ -155,7 +138,7 @@
 							<Name>Next Action Details</Name>
 							<Class>action-details</Class>
 							<Type>Query</Type>
-							<QueryType>Form</QueryType>
+							<QueryType>list</QueryType>
 							<Table>NEXT_ACTION_LIST</Table>
 							<Filter>Id</Filter>
 							<ColumnList>
@@ -189,7 +172,14 @@
 										<Option>
 											<Uri>/nextactions/{id}</Uri>
 											<Operation>DELETE</Operation>
-											<UriValues>rs-test</UriValues>
+										</Option>
+										<Option>
+											<Uri>/nextactions/{id}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+										<Option>
+											<Uri>/nextactions/{id}/project</Uri>
+											<Operation>PUT</Operation>
 										</Option>
 									</OptionList>
 								</Column>
@@ -197,22 +187,100 @@
 						</Composition>
 					</CompositionList>
 				</Operation>
-				<Operation> <Name>Done</Name> <Type>DELETE</Type>
+				<Operation> <Name>CancelAction</Name> <Type>DELETE</Type>
 					<Location>/nextactions</Location>
 					<OverridePost>Y</OverridePost>
-					<Command>DoAction</Command>
+					<Command>CancelAction</Command>
 					<ControlList>
 						<Control>
+							<Label>When was this canceled?</Label>
 							<Name>date</Name>
 							<Type>text</Type>
 							<Value>{now}</Value>
-							<Label>When was this done?</Label>
 						</Control>
 					</ControlList>
 					<AutoMap>N</AutoMap>
 					<MapControlList type="list">
 						<MapControl name="{id}">ActionId</MapControl>
 						<MapControl name="date">Date</MapControl>
+					</MapControlList>
+				</Operation>
+				<Operation> <Name>UpdateAction</Name> <Type>PUT</Type>
+					<Aggregate>ProcessAction</Aggregate>
+					<Command>UpdateAction</Command>
+					<Redirect>/nextactions/{id}</Redirect>
+                    <View>next_action_list</View>
+                    <FilterList>
+                        <Filter>
+                            <Field>id</Field>
+                            <Value>{id}</Value>
+                        </Filter>
+                    </FilterList>
+					<ControlList>
+						<Control>
+							<Label>Context</Label>
+							<Name>context</Name>
+							<Type>select</Type>
+							<View>context_list</View>
+							<Option>context</Option>
+							<Value>{context}</Value>
+							<FilterColumn>context</FilterColumn>
+							<FilterValue>is not null</FilterValue>
+						</Control>
+						<Control>
+							<Label>Description</Label>
+							<Name>description</Name>
+							<Value>{description}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>What's the successfull outcome?</Label>
+							<Name>outcome</Name>
+							<Value>{outcome}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>What is the Next Action?</Label>
+							<Name>next-action</Name>
+							<Value>{next_action}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Time</Label>
+							<Name>time</Name>
+							<Value>{time}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Energy</Label>
+							<Name>energy</Name>
+							<Value>{energy}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Priority</Label>
+							<Name>priority</Name>
+							<Value>{priority}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Comments</Label>
+							<Name>comments</Name>
+							<Value>{Comments}</Value>
+							<Type>textarea</Type>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="{id}">ActionId</MapControl>
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="description">Description</MapControl>
+						<MapControl name="outcome">Outcome</MapControl>
+						<MapControl name="next-action">NextAction</MapControl>
+						<MapControl name="time">Time</MapControl>
+						<MapControl name="energy">Energy</MapControl>
+						<MapControl name="priority">Priority</MapControl>
+						<MapControl name="comments">Comments</MapControl>
 					</MapControlList>
 				</Operation>
 			</OperationList>

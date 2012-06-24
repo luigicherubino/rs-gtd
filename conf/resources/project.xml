@@ -9,6 +9,23 @@
 					<Type>GET</Type>
 					<CompositionList>
 						<Composition>
+							<Name>Project List</Name>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Class>project-list</Class>
+							<PageSize>100</PageSize>
+							<Table>project_list</Table>
+							<Order>name</Order>
+							<ColumnList>
+								<Column>
+								   	<Value>Name</Value>
+									<HRef>/projects/{uri}</HRef>
+							   	</Column>
+								<Column>
+									<Value>Purpose</Value> </Column>
+							</ColumnList>
+						</Composition>
+						<Composition>
 							<Name>Commands</Name>
 							<Type>Command</Type>
 							<OptionList>
@@ -17,36 +34,6 @@
 									<Operation>POST</Operation>
 								</Option>
 							</OptionList>
-						</Composition>
-						<Composition>
-							<Name>Project List</Name>
-							<Type>Query</Type>
-							<QueryType>List</QueryType>
-							<Class>project-list</Class>
-							<PageSize>100</PageSize>
-							<Table>project_list</Table>
-							<Order>name</Order>
-							<ColumnList>
-								<Column>
-									<Name>Name</Name>
-									<HRef>/projects/{uri}</HRef>
-							   	</Column>
-								<Column> <Name>Purpose</Name> </Column>
-								<Column>
-									<Type>Options</Type>
-									<OptionList>
-										<Option>
-											<Uri>/projects/{uri}</Uri>
-											<Redirect>/projects/{Aggregate:uri:Name}</Redirect>
-											<Operation>PUT</Operation>
-										</Option>
-										<Option>
-											<Uri>/projects/{uri}</Uri>
-											<Operation>DELETE</Operation>
-										</Option>
-									</OptionList>
-								</Column>						
-							</ColumnList>
 						</Composition>
 					</CompositionList>
 				</Operation>
@@ -62,12 +49,12 @@
 							<Label>Project Name</Label>
 						</Control>
 						<Control>
-							<Label>Purpose</Label>
+							<Label>Purpose (Define purpose, why is the project worth doing)</Label>
 							<Name>purpose</Name>
 							<Type>text</Type>
 						</Control>
 						<Control>
-							<Label>Vision</Label>
+							<Label>Vision (Define success (goal) of the project)</Label>
 							<Name>vision</Name>
 							<Type>textarea</Type>
 							<Rows>5</Rows>
@@ -86,27 +73,27 @@
 		<Resource> <Name>/projects/{project-uri}</Name>
 			<Aggregate>ProjectAggregate</Aggregate>
 			<Type>WebService</Type>
+			<Template>project.html</Template>
 			<OperationList>
-				<Operation>
-					<Name>Projects Details</Name>
+				<Operation> <Name>Projects Details</Name>
 					<Type>GET</Type>
 					<CompositionList>
 						<Composition>
 							<Name>Project Details</Name>
 							<Type>Query</Type>
 							<QueryType>Form</QueryType>
-							<Class>project-list</Class>
+							<Class>project-details</Class>
 							<PageSize>100</PageSize>
 							<Table>project_list</Table>
 							<Filter>uri</Filter>
 							<Order>name</Order>
 							<ColumnList>
 								<Column>
-									<Value>Project: {Name}</Value>
+									<Value>Name</Value>
 									<Class>rs-title</Class>
 							   	</Column>
-								<Column> <Name>Purpose</Name> </Column>
-								<Column> <Name>Vision</Name> <Type>markdown</Type> </Column>
+								<Column> <Value>Purpose</Value> </Column>
+								<Column> <Value>Vision</Value> <Type>markdown</Type> </Column>
 								<Column>
 									<Type>Options</Type>
 									<OptionList>
@@ -114,14 +101,57 @@
 											<Uri>/projects/{project-uri}</Uri>
 											<Operation>PUT</Operation>
 										</Option>
+										<Option>
+											<Uri>/projects/{project-uri}/outcome</Uri>
+											<Redirect>/projects/{project-uri}</Redirect>
+											<Operation>POST</Operation>
+										</Option>
 									</OptionList>
 								</Column>						
 							</ColumnList>
 						</Composition>
 						<Composition>
+							<Name>ProjectOutcomes</Name>
+							<Title>Outcomes</Title>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Class>project-outcome-list</Class>
+							<PageSize>100</PageSize>
+							<Table>project_outcomes</Table>
+							<FilterList>
+								<Filter>
+									<Field>project_id</Field>
+									<Value>{Project Details:project_id}</Value>
+								</Filter>
+							</FilterList>
+							<Order>name</Order>
+							<ColumnList>
+								<Column>
+									<Value>Name</Value>
+									<HRef>/projects/{project-uri}/outcome/{outcome_id}</HRef>
+							   	</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Label>Remove</Label>
+											<Uri>/projects/{project-uri}/outcome/{outcome_id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+										<Option>
+											<Label>Update</Label>
+											<Uri>/projects/{project-uri}/outcome/{outcome_id}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+						<Composition>
+							<Title>Tasks</Title>
 							<Name>ProjectTaskList</Name>
 							<Type>Query</Type>
-							<QueryType>List</QueryType>
+							<QueryType>Form</QueryType>
 							<Class>project-task-list</Class>
 							<PageSize>100</PageSize>
 							<Table>next_action_list</Table>
@@ -145,11 +175,12 @@
 										<Option>
 											<Uri>/nextactions/{id}</Uri>
 											<Operation>DELETE</Operation>
-											<UriValues>rs-test</UriValues>
+											<Redirect>/projects/{project-uri}</Redirect>
 										</Option>
 										<Option>
 											<Label>Move to project</Label>
 											<Uri>/nextactions/{id}/project</Uri>
+											<Redirect>/projects/{project-uri}</Redirect>
 											<Operation>PUT</Operation>
 										</Option>
 									</OptionList>
@@ -239,6 +270,141 @@
 							<NoColumns>Y</NoColumns>
 						</Composition>
 					</CompositionList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/projects/{project-uri}/outcome</Name>
+			<Aggregate>ProjectAggregate</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation> <Name>CreateProjectOutcome</Name>
+					<Type>POST</Type>
+					<Redirect>/projects/{project-uri}</Redirect>
+					<Command>CreateProjectOutcome</Command>
+					<Table>project_list</Table>
+					<FilterList>
+						<Filter>
+							<Field>uri</Field> 
+							<Value>{project-uri}</Value> 
+						</Filter>
+					</FilterList>
+					<ControlList>
+						<Control>
+							<Name>name</Name>
+							<Type>text</Type>
+							<Label>Outcome</Label>
+						</Control>
+						<Control>
+							<Label>Comments</Label>
+							<Name>comments</Name>
+							<Type>textarea</Type>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="{project_id}">ProjectId</MapControl>
+						<MapControl name="name">Name</MapControl>
+						<MapControl name="{string:New}">Status</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/projects/{project-uri}/outcome/{id}</Name>
+			<Aggregate>ProjectAggregate</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>ProjectOutcome</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Outcome Details</Name>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Class>outcome-details</Class>
+							<PageSize>100</PageSize>
+							<Table>project_outcomes</Table>
+							<Filter>outcome_id</Filter>
+							<ColumnList>
+								<Column>
+									<Value>Outcome: {Name}</Value>
+									<Class>rs-title</Class>
+							   	</Column>
+								<Column> <Value>Comments</Value> <Type>markdown</Type> </Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/projects/{project-uri}/outcome/{id}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+										<Option>
+											<Uri>/projects/{project-uri}/outcome/{id}</Uri>
+											<Operation>DELETE</Operation>
+										</Option>
+									</OptionList>
+								</Column>						
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation> <Name>UpdateProjectOutcome</Name>
+					<Type>PUT</Type>
+					<Redirect>/projects/{project-uri}</Redirect>
+					<Command>UpdateProjectOutcome</Command>
+					<Table>project_outcomes</Table>
+					<FilterList>
+						<Filter>
+							<Field>outcome_id</Field> 
+							<Value>{id}</Value> 
+						</Filter>
+					</FilterList>
+					<ControlList>
+						<Control>
+							<Name>name</Name>
+							<Value>{name}</Value>
+							<Type>text</Type>
+							<Label>Outcome</Label>
+						</Control>
+						<Control>
+							<Label>Comments</Label>
+							<Name>comments</Name>
+							<Value>{comments}</Value>
+							<Type>textarea</Type>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="{outcome_id}">OutcomeId</MapControl>
+						<MapControl name="{project_id}">ProjectId</MapControl>
+						<MapControl name="name">Name</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+			<OperationList>
+				<Operation> <Name>DeactivateProjectOutcome</Name>
+					<Type>DELETE</Type>
+					<Redirect>/projects/{project-uri}</Redirect>
+					<Command>DeactivateProjectOutcome</Command>
+					<Table>project_outcomes</Table>
+					<FilterList>
+						<Filter>
+							<Field>outcome_id</Field> 
+							<Value>{id}</Value> 
+						</Filter>
+					</FilterList>
+					<ControlList>
+						<Control>
+							<Label>Reason</Label>
+							<Name>reason</Name>
+							<Type>text</Type>
+						</Control>
+					</ControlList>
+					<MapControlList type="list">
+						<MapControl name="{outcome_id}">OutcomeId</MapControl>
+						<MapControl name="{project_id}">ProjectId</MapControl>
+						<MapControl name="reason">Reason</MapControl>
+					</MapControlList>
 				</Operation>
 			</OperationList>
 		</Resource>

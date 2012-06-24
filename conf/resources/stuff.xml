@@ -70,8 +70,6 @@
 						<Control>
 							<Name>comments</Name>
 							<Type>textarea</Type>
-							<Rows>5</Rows>
-							<Cols>60</Cols>
 							<Label>Comments</Label>
 						</Control>
 					</ControlList>

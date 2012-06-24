@@ -12,7 +12,7 @@
 							<Class>someday-list</Class>
 							<TemplateVar>Content</TemplateVar>
 							<Type>Query</Type>
-							<QueryType>List</QueryType>
+							<QueryType>Form</QueryType>
 							<Table>someday_list</Table>
 							<ColumnList>
 								<Column>
@@ -21,6 +21,7 @@
 								<Column>
 									<Value>Description</Value>
 									<Href>/someday/{task_id}</Href>
+									<Class>rs-title</Class>
 								</Column>
 								<Column>
 									<Name>Tickle</Name>
@@ -116,14 +117,13 @@
 							<Filter>task_id</Filter>
 							<ColumnList>
 								<Column>
+									<Value>Context</Value>
+								</Column>
+								<Column>
 									<Value>Description</Value>
 									<Class>rs-title</Class>
 								</Column>
 								<Column>
-									<Value>Context</Value>
-								</Column>
-								<Column>
-									<Name>Tickle</Name>
 									<Value>Tickle_Date</Value>
 								</Column>
 								<Column>

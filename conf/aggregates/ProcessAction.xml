@@ -23,8 +23,30 @@
 			<Command>AssignTaskToProject</Command>
 			<Type>Update ProcessAction</Type>
 			<MapList type="list">
-				<Map name="ProjectId">ProjectId</Map>	
 				<Map name="ActionId">ActionId</Map>	
+				<Map name="ProjectId">ProjectId</Map>	
+			</MapList>
+		</Action>
+		<Action>
+			<Command>CancelAction</Command>
+			<Type>Update ProcessAction</Type>
+			<MapList type="list">
+				<Map name="ActionId">ActionId</Map>	
+				<Map name="Date">DateCanceled</Map>	
+			</MapList>
+		</Action>
+		<Action>
+			<Command>UpdateAction</Command>
+			<Type>Update ProcessAction</Type>
+			<MapList type="list">
+				<Map name="ActionId">ActionId</Map>	
+				<Map name="context">Context</Map>	
+				<Map name="Outcome">Outcome</Map>	
+				<Map name="NextAction">NextAction</Map>	
+				<Map name="Time">Time</Map>	
+				<Map name="Energy">Energy</Map>	
+				<Map name="Priority">Priority</Map>	
+				<Map name="Comments">Comments</Map>	
 			</MapList>
 		</Action>
 	</ActionList>

@@ -97,6 +97,10 @@
 					<Name>Tasks</Name>
 					<Type>ProjectTask[0..*]</Type>
 				</Property>
+				<Property>
+					<Name>Outcome</Name>
+					<Type>ProjectOutcome[0..*]</Type>
+				</Property>
 			</PropertyList>
 			<EventList>
 				<Event> <Name>ProjectCreated</Name>
@@ -123,6 +127,26 @@
 						<PayLoad id="IsActive">IsActive</PayLoad>
 					</PayLoadList>
 				</Event>
+                <Event> <Name>ProjectOutcomeCreated</Name>
+                    <Trigger>OnAdded</Trigger>
+                    <Property>Outcome</Property>
+                    <PayLoadList type="list">
+                        <PayLoad id="ProjectId">{parent:ProjectId}</PayLoad>
+                        <PayLoad id="OutcomeId">OutcomeId</PayLoad>
+                        <PayLoad id="Name">Name</PayLoad>
+                        <PayLoad id="Status">Status</PayLoad>
+                        <PayLoad id="Comments">Comments</PayLoad>
+                    </PayLoadList>
+                </Event>
+                <Event> <Name>ProjectOutcomeDeactivated</Name>
+                    <Trigger>OnDeleted</Trigger>
+                    <Property>Outcome</Property>
+                    <PayLoadList type="list">
+                        <PayLoad id="OutcomeId">OutcomeId</PayLoad>
+                        <PayLoad id="ProjectId">{parent:ProjectId}</PayLoad>
+                    </PayLoadList>
+                </Event>
+			
 			</EventList>
 		</Entity>
 
@@ -138,6 +162,51 @@
 				</Colaboration>
 			</ColaborationList>
 		</Entity>
+
+		<Entity> <Name>ProjectOutcome</Name>
+			<Type>Generic Item</Type>
+			<Key>OutcomeId</Key>
+			<PropertyList>
+				<Property>
+					<Name>OutcomeId</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Name</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Status</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Comments</Name>
+					<Type>String</Type>
+				</Property>
+				<Property>
+					<Name>Reason</Name>
+					<Type>String</Type>
+				</Property>
+			</PropertyList>
+			<EventList>
+                <Event> <Name>ProjectOutcomeUpdated</Name>
+                    <Trigger>OnPayloadUpdated</Trigger>
+                    <PayLoadList type="list">
+                        <PayLoad id="ProjectId">{parent:ProjectId}</PayLoad>
+                        <PayLoad id="OutcomeId">OutcomeId</PayLoad>
+                        <PayLoad id="Name">Name</PayLoad>
+                        <PayLoad id="Status">Status</PayLoad>
+                        <PayLoad id="Comments">Comments</PayLoad>
+					</PayLoadList>
+                </Event>
+			</EventList>
+            <ColaborationList>
+                <Colaboration>
+                    <Entity>Project</Entity>
+                    <Type>Transaction - Specific</Type>
+				</Colaboration>
+			</ColaborationList>
+		</Entity>		
 
 		<Entity> <Name>ProcessStuff</Name>
 			<Type>Generic Item</Type>
@@ -211,12 +280,10 @@
 				<Property> <Name>ProjectId</Name>
 					<Type>String</Type>
 				</Property>
-				<Property>
-					<Name>Status</Name>
+				<Property> <Name>Status</Name>
 					<Type>String</Type>
 				</Property>
-				<Property>
-					<Name>Description</Name>
+				<Property> <Name>Description</Name>
 					<Type>String</Type>
 				</Property>
 				<Property>
@@ -247,6 +314,10 @@
 					<Name>DateDone</Name>
 					<Type>String</Type>
 				</Property>
+				<Property>
+					<Name>DateCanceled</Name>
+					<Type>String</Type>
+				</Property>
 					<Property>
 					<Name>Comments</Name>
 					<Type>String</Type>
@@ -259,8 +330,16 @@
 					<PayLoadList type="list">
 						<PayLoad id="ActionId">ActionId</PayLoad>
 						<PayLoad id="ProjectId">ProjectId</PayLoad>
-						<PayLoad id="Date">Outcome</PayLoad>
-						<PayLoad id="ProjectId"></PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event>
+					<Name>ActionCanceled</Name>
+					<Trigger>OnPropertySet</Trigger>
+					<Property>DateCanceled</Property>
+					<PayLoadList type="list">
+						<PayLoad id="ActionId">ActionId</PayLoad>
+						<PayLoad id="ProjectId">ProjectId</PayLoad>
+						<PayLoad id="Date">DateCanceled</PayLoad>
 					</PayLoadList>
 				</Event>
 				<Event>
@@ -281,11 +360,26 @@
 					</PayLoadList>
 				</Event>
 				<Event> <Name>TaskAssignedToProject</Name>
-					<Trigger>OnPropertySet</Trigger>
+					<Trigger>OnPropertyUpdated</Trigger>
 					<Property>ProjectId</Property>
 					<PayLoadList type="list">
-						<PayLoad id="ActionId">{ActionId}</PayLoad>
+						<PayLoad id="ActionId">ActionId</PayLoad>
 						<PayLoad id="ProjectId">ProjectId</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event> <Name>ActionUpdated</Name>
+					<Trigger>OnPayloadUpdated</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="ActionId">{ActionId}</PayLoad>
+						<PayLoad id="ProjectId">{ProjectId}</PayLoad>
+						<PayLoad id="Description">Description</PayLoad>
+						<PayLoad id="Context">Context</PayLoad>
+						<PayLoad id="Outcome">Outcome</PayLoad>
+						<PayLoad id="NextAction">NextAction</PayLoad>
+						<PayLoad id="Time">Time</PayLoad>
+						<PayLoad id="Energy">Energy</PayLoad>
+						<PayLoad id="Priority">Priority</PayLoad>
+						<PayLoad id="Comments">Comments</PayLoad>
 					</PayLoadList>
 				</Event>
 			</EventList>

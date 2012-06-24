@@ -106,6 +106,34 @@
 						</Property>
 					</PropertyList>
 				</Message>
+				<Message> <Name>ActionCanceled</Name>
+					<PropertyList>
+						<Property>
+							<Name>ActionId</Name>
+						</Property>
+						<Property>
+							<Name>Date</Name>
+						</Property>
+						<Property>
+							<Name>ProjectId</Name>
+						</Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>ActionUpdated</Name>
+					<PropertyList>
+						<Property> <Name>ActionId</Name> </Property>
+						<Property> <Name>StuffId</Name> </Property>
+						<Property> <Name>ProjectId</Name> </Property>
+						<Property> <Name>Status</Name> </Property>
+						<Property> <Name>Description</Name> </Property>
+						<Property> <Name>Context</Name> </Property>
+						<Property> <Name>Outcome</Name> </Property>
+						<Property> <Name>NextAction</Name> </Property>
+						<Property> <Name>Time</Name> </Property>
+						<Property> <Name>Priority</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
+					</PropertyList>
+				</Message>
 				<Message> <Name>StuffActionedToProject</Name>
 					<PropertyList>
 						<Property>
@@ -193,7 +221,32 @@
 						<Property> <Name>Folder</Name> </Property>
 					</PropertyList>
 				</Message>
-				<!-- Folder Related Events -->
+				<!-- Project Outcome Related Events -->
+				<Message> <Name>ProjectOutcomeCreated</Name>
+					<PropertyList>
+						<Property> <Name>OutcomeId</Name> </Property>
+						<Property> <Name>ProjectId</Name> </Property>
+						<Property> <Name>Name</Name> </Property>
+						<Property> <Name>Status</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
+					</PropertyList>
+				</Message>
+					<Message> <Name>ProjectOutcomeUpdated</Name>
+					<PropertyList>
+						<Property> <Name>OutcomeId</Name> </Property>
+						<Property> <Name>ProjectId</Name> </Property>
+						<Property> <Name>Name</Name> </Property>
+						<Property> <Name>Status</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
+					</PropertyList>
+				</Message>
+				<Message> <Name>ProjectOutcomeDeactivated</Name>
+					<PropertyList>
+						<Property> <Name>OutcomeId</Name> </Property>
+						<Property> <Name>ProjectId</Name> </Property>
+					</PropertyList>
+				</Message>
+<!-- Folder Related Events -->
 				<Message> <Name>FolderCreated</Name>
 					<PropertyList>
 						<Property> <Name>FolderId</Name> </Property>

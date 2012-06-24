@@ -1,17 +1,23 @@
-html { font-size:1em; }
-body { font-size:1em; }
 
 body {
+	font-size:1em; 
 	font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
-	background-color: #f1f1f1;
+	background-color: #f1f1f1; 
 }
+input, textarea, button, isindex, select
+{
+	font-size: 0.9em;
+	font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+}
+
+a, a:visited { color:#333};
 
 h1 {
 	color: #333;
-	font-size: 200%;
+	font-size: 1em;
 }
 
-#page { margin: 0px auto; Xwidth: 900px;}
+#page { margin: 0px auto; }
 
 .content {
 	margin: 0 auto;
@@ -60,7 +66,6 @@ and (max-device-width : 1024px)
 and (orientation : portrait),
 (max-width: 768px)
 {
-	/* body { background-color: red;} */
 	.content .main { float: right; width: 100%; }
 	.content .left { float: left; width: 100%; }
 
@@ -78,7 +83,7 @@ only screen and (min-device-pixel-ratio : 1.5)
 	.content .main { float: right; width: 100%; }
 	.content .left { float: left; width: 100%; }
 
-	div.left.menu * li { float: left; background-color: red; }
+	div.left.menu * li { float: left; }
 
 }
 
