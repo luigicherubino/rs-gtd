@@ -21,7 +21,6 @@ dl.rs-item dd, dl.rs-item dt
 
 .rs-options-inline * ul 
 {
-	background-color: #DD0;
 }
 
 .rs-options-inline * li 
@@ -31,7 +30,7 @@ dl.rs-item dd, dl.rs-item dt
 	margin-right: 0.8em;
 	float: left;
 	font-size: 0.8em;
-	padding: 0em 0em 0.5em 0em;
+	padding: 1em 0em 0em 0em;
 }
 
 .rs-options-inline-clear { clear:left;}
@@ -71,7 +70,7 @@ div.rs-submit-spacer,
 form.rs-link-post dt  {
    display: inline-block;
    margin: 0.8em 0em 0em 0em;
-   width: 30%;
+   width: 20%;
    vertical-align: top;
    text-align: right;
 }

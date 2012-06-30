@@ -31,17 +31,20 @@
 										<Option>
 											<Uri>/stuff/{stuff_id}</Uri>
 											<Operation>DELETE</Operation>
+											<Redirect>/stuff</Redirect>
 										</Option>
 										<Option>
 											<Label>Process</Label>
 											<Uri>/nextactions</Uri>
 											<UriValues>stuff-id={stuff_id}</UriValues>
+											<Redirect>/stuff</Redirect>
 											<Operation>POST</Operation>
 										</Option>
 										<Option>
 											<Label>Defer</Label>
 											<Uri>/someday</Uri>
 											<UriValues>stuff-id={stuff_id}</UriValues>
+											<Redirect>/stuff</Redirect>
 											<Operation>POST</Operation>
 										</Option>
 										<Option>

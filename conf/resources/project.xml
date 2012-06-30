@@ -163,12 +163,12 @@
 							</FilterList>
 							<Order>when</Order>
 							<ColumnList>
+								<Column> <Value>Context</Value> </Column>
 								<Column>
-									<Name>Description</Name>
+									<Value>Description</Value>
 									<HRef>/nextactions/{id}</HRef>
 							   	</Column>
-								<Column> <Name>Outcome</Name> </Column>
-								<Column> <Name>Comments</Name> <Type>markdown</Type> </Column>
+								<Column> <Value>Outcome</Value> </Column>
 								<Column>
 									<Type>Options</Type>
 									<OptionList>

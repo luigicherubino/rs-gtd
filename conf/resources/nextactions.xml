@@ -320,5 +320,75 @@
 				</Operation>
 			</OperationList>
 		</Resource>
+		<Resource> <Name>/inc-nextactions</Name>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Next Actions</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Next Action List</Name>
+							<Class>next-action-list</Class>
+							<TemplateVar>Content</TemplateVar>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Table>NEXT_ACTION_LIST</Table>
+							<JoinList>
+								<Join>
+									<Name>Project</Name>
+									<Table>project_list</Table>
+									<Key>project_id</Key>
+									<On>project_id</On>
+								</Join>	
+							</JoinList>
+							<ColumnList>
+								<Column>
+									<Class>rs-title</Class>
+									<Value>Description</Value>
+									<Href>/nextactions/{id}</Href>
+								</Column>
+								<Column>
+									<Value>{Project:name}</Value>
+									<EmptyValue>{}</EmptyValue>
+									<HRef>/projects/{Project:uri}</HRef>
+								</Column>
+								<Column>
+									<Value>NEXT_ACTION</Value>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+			</OperationList>
+		</Resource>
+		<Resource> <Name>/nextactions/context</Name>
+			<Aggregate>ProcessAction</Aggregate>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation> <Name>Next Action by Context</Name> <Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Context List</Name>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Class>context-list</Class>
+							<PageSize>100</PageSize>
+							<Table>context_list</Table>
+							<Order>context</Order>
+							<ColumnList>
+								<Column>
+									<Class>rs-title</Class>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Value>GET /inc-nextactions?filter-context={context}</Value>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+			</OperationList>
+		</Resource>
 	</ResourceList>
 </NextActions>

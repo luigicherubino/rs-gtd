@@ -1,5 +1,6 @@
 
-body {
+html, body {
+	padding: 0; margin: 0;
 	font-size:1em; 
 	font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
 	background-color: #f1f1f1; 
@@ -12,10 +13,6 @@ input, textarea, button, isindex, select
 
 a, a:visited { color:#333};
 
-h1 {
-	color: #333;
-	font-size: 1em;
-}
 
 #page { margin: 0px auto; }
 
@@ -24,15 +21,37 @@ h1 {
 	width: 93.75%; /* 900px / 960px */
 }
 
+.top {
+}
+
+.top h1  
+{
+	margin: 0;
+	font-size: 1.6em;
+}
+
 .content .main {
 	float: right;
-	width: 74%; /* 666px / 900px */
+	width: 79%; /* 666px / 900px */
 }
 
 .content .left {
 	float: left;
-	width: 25.666666666667%; /* 231px / 900px */
+	width: 20.666666666667%; /* 231px / 900px */
+	margin-bottom: 1em;
 }
+
+div.footer 
+{
+	margin-top: 1em;
+	display: block;
+	clear: both;
+	background-color: black;
+	color: #fff;
+	padding: 1em;
+}
+
+.footer a { color: #fff;}
 
 div.left.menu ul
 {

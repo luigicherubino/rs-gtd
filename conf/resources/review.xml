@@ -1,0 +1,149 @@
+<GTDResource>
+	<ResourceList>
+		<Resource> <Name>/review</Name>
+			<Type>WebService</Type>
+			<OperationList>
+				<Operation>
+					<Name>Review</Name>
+					<Type>GET</Type>
+					<CompositionList>
+						<Composition>
+							<Name>Next Action List</Name>
+							<Class>next-action-list</Class>
+							<TemplateVar>Content</TemplateVar>
+							<Type>Query</Type>
+							<QueryType>List</QueryType>
+							<Table>NEXT_ACTION_LIST</Table>
+							<JoinList>
+								<Join>
+									<Name>Project</Name>
+									<Table>project_list</Table>
+									<Key>project_id</Key>
+									<On>project_id</On>
+								</Join>	
+							</JoinList>
+							<ColumnList>
+								<Column>
+									<Value>Context</Value>
+								</Column>
+								<Column>
+									<Class>rs-h1</Class>
+									<Name>Action</Name>
+									<Value>Description</Value>
+									<Href>/review/{id}</Href>
+								</Column>
+									<Column>
+									<Name>Outcome</Name>
+									<Value>OUTCOME</Value>
+								</Column>
+								<Column>
+									<Value>NEXT_ACTION</Value>
+								</Column>
+								<Column>
+									<Name>Project</Name>
+									<Value>{Project:name}</Value>
+									<EmptyValue>{}</EmptyValue>
+									<HRef>/projects/{Project:uri}</HRef>
+								</Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/review/{id}</Uri>
+											<Operation>DELETE</Operation>
+											<UriValues>rs-test</UriValues>
+										</Option>
+										<Option>
+											<Uri>/review/{id}/project</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+									</OptionList>
+								</Column>
+							</ColumnList>
+						</Composition>
+					</CompositionList>
+				</Operation>
+				<Operation>
+					<Name>Process</Name>
+					<Aggregate>ProcessAction</Aggregate>
+					<Command>ActionStuff</Command>
+					<Type>POST</Type>
+					<Redirect>/review/{id}</Redirect>
+                    <View>stuff_list</View>
+                    <FilterList>
+                        <Filter>
+                            <Field>stuff_id</Field>
+                            <Value>{query:stuff-id}</Value>
+                        </Filter>
+                    </FilterList>
+					<ControlList>
+						<Control>
+							<Name>stuff-id</Name>
+							<Type>hidden</Type>
+							<Value>{stuff_id}</Value>
+						</Control>
+						<Control>
+							<Label>Description</Label>
+							<Name>Description</Name>
+							<Value>{Description}</Value>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Context</Label>
+							<Name>context</Name>
+							<Type>select</Type>
+							<View>context_list</View>
+							<Option>context</Option>
+							<Value>{context}</Value>
+							<FilterColumn>context</FilterColumn>
+							<FilterValue>is not null</FilterValue>
+						</Control>
+						<Control>
+							<Label>What's the successfull outcome?</Label>
+							<Name>outcome</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>What is the Next Action?</Label>
+							<Name>next-action</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Time</Label>
+							<Name>time</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Energy</Label>
+							<Name>energy</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Priority</Label>
+							<Name>priority</Name>
+							<Type>text</Type>
+						</Control>
+						<Control>
+							<Label>Comments</Label>
+							<Name>comments</Name>
+							<Value>{Comments}</Value>
+							<Type>textarea</Type>
+						</Control>
+					</ControlList>
+					<AutoMap>N</AutoMap>
+					<MapControlList type="list">
+						<MapControl name="stuff-id">StuffId</MapControl>
+						<MapControl name="Description">Description</MapControl>
+						<MapControl name="context">Context</MapControl>
+						<MapControl name="outcome">Outcome</MapControl>
+						<MapControl name="next-action">NextAction</MapControl>
+						<MapControl name="time">Time</MapControl>
+						<MapControl name="energy">Energy</MapControl>
+						<MapControl name="priority">Priority</MapControl>
+						<MapControl name="comments">Comments</MapControl>
+					</MapControlList>
+				</Operation>
+			</OperationList>
+		</Resource>
+	</ResourceList>
+</GTDResource>
