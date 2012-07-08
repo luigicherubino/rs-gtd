@@ -1,3 +1,15 @@
+
+div.left.title   {
+	display: inline-block;
+	width: 100%;
+	font-weight: bold;
+	margin: 0 0 0 0;
+	padding: 0.5em 0em 0em 0em;
+
+}
+div.left.title a  { text-decoration: none;}
+div.left.title a:hover  { text-decoration: underline;}
+
 dd.rs-title { 
 	font-size: 150%;
 }

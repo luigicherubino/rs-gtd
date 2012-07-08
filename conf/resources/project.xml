@@ -79,7 +79,7 @@
 					<Type>GET</Type>
 					<CompositionList>
 						<Composition>
-							<Name>Project Details</Name>
+							<Name>Project</Name>
 							<Type>Query</Type>
 							<QueryType>Form</QueryType>
 							<Class>project-details</Class>
@@ -121,7 +121,7 @@
 							<FilterList>
 								<Filter>
 									<Field>project_id</Field>
-									<Value>{Project Details:project_id}</Value>
+									<Value>{Project:project_id}</Value>
 								</Filter>
 							</FilterList>
 							<Order>name</Order>
@@ -158,7 +158,7 @@
 							<FilterList>
 								<Filter>
 									<Field>project_id</Field>
-									<Value>{Project Details:project_id}</Value>
+									<Value>{Project:project_id}</Value>
 								</Filter>
 							</FilterList>
 							<Order>when</Order>
@@ -274,6 +274,7 @@
 			</OperationList>
 		</Resource>
 		<Resource> <Name>/projects/{project-uri}/outcome</Name>
+			<Template>project.html</Template>
 			<Aggregate>ProjectAggregate</Aggregate>
 			<Type>WebService</Type>
 			<OperationList>
@@ -310,15 +311,51 @@
 			</OperationList>
 		</Resource>
 		<Resource> <Name>/projects/{project-uri}/outcome/{id}</Name>
+			<Template>project.html</Template>
 			<Aggregate>ProjectAggregate</Aggregate>
 			<Type>WebService</Type>
 			<OperationList>
-				<Operation>
-					<Name>ProjectOutcome</Name>
-					<Type>GET</Type>
+				<Operation> <Name>ProjectOutcome</Name> <Type>GET</Type>
 					<CompositionList>
 						<Composition>
-							<Name>Outcome Details</Name>
+							<Name>Project</Name>
+							<Type>Query</Type>
+							<QueryType>Form</QueryType>
+							<Class>project-details</Class>
+							<PageSize>100</PageSize>
+							<Table>project_list</Table>
+							<FilterList>
+								<Filter>
+									<Field>uri</Field>
+									<Value>{project-uri}</Value>
+								</Filter>
+							</FilterList>
+							<Order>name</Order>
+							<ColumnList>
+								<Column>
+									<Value>Name</Value>
+									<Class>rs-title</Class>
+							   	</Column>
+								<Column> <Value>Purpose</Value> </Column>
+								<Column> <Value>Vision</Value> <Type>markdown</Type> </Column>
+								<Column>
+									<Type>Options</Type>
+									<OptionList>
+										<Option>
+											<Uri>/projects/{project-uri}</Uri>
+											<Operation>PUT</Operation>
+										</Option>
+										<Option>
+											<Uri>/projects/{project-uri}/outcome</Uri>
+											<Redirect>/projects/{project-uri}</Redirect>
+											<Operation>POST</Operation>
+										</Option>
+									</OptionList>
+								</Column>						
+							</ColumnList>
+						</Composition>
+						<Composition>
+							<Name>ProjectOutcomeDetails</Name>
 							<Type>Query</Type>
 							<QueryType>Form</QueryType>
 							<Class>outcome-details</Class>
@@ -380,8 +417,6 @@
 						<MapControl name="comments">Comments</MapControl>
 					</MapControlList>
 				</Operation>
-			</OperationList>
-			<OperationList>
 				<Operation> <Name>DeactivateProjectOutcome</Name>
 					<Type>DELETE</Type>
 					<Redirect>/projects/{project-uri}</Redirect>

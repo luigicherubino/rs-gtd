@@ -2,8 +2,7 @@
 <ProjectAggregate>
 	<Entity>Project</Entity>
 	<ActionList>
-		<Action>
-			<Command>CreateProject</Command>
+		<Action> <Command>CreateProject</Command>
 			<Type>Init</Type>
 			<Id>ProjectId</Id>
 			<InitMapList type="list">
@@ -35,8 +34,7 @@
 				<Map name="Comments">Comments</Map>
 			</MapList>
 		</Action>
-		<Action>
-			<Command>UpdateProjectOutcome</Command>
+		<Action> <Command>UpdateProjectOutcome</Command>
 			<Type>Update Outcome</Type>
 			<MapList type="list">
 				<Map name="OutcomeId">OutcomeId</Map>
@@ -45,8 +43,7 @@
 				<Map name="Comments">Comments</Map>
 			</MapList>
 		</Action>
-		<Action>
-			<Command>DeactivateProjectOutcome</Command>
+		<Action> <Command>DeactivateProjectOutcome</Command>
 			<Type>Delete Outcome</Type>
 			<MapList type="list">
 				<Map name="OutcomeId">OutcomeId</Map>

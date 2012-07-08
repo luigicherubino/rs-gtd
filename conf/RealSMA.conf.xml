@@ -2,7 +2,7 @@
 <GTDComponents>
 	<ComponentList>
 		<Component>
-			<Name>RealSMA - Getting Things Done</Name>
+			<Name>RealSMA - GTD</Name>
 			<Type>Server</Type>
 			<ResourceType>WebService</ResourceType>
 			<Debug>N</Debug>

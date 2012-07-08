@@ -1,2 +1,16 @@
 <link href="/project.css" rel="stylesheet" type="text/css" />
-$content
+<div class="project">
+	<div class="left menu">
+		<div class="left title">
+			<a href="/projects/{Project:uri}">{Project:name}</a>
+		</div>
+		<ul>
+			<li><a href="/projects/{Project:uri}">Overview</a></li>
+		</ul>
+  	</div><!-- left: .main -->
+
+    <div class="main">
+      $content
+    </div><!-- end: .main -->
+</div>
+
