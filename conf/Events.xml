@@ -8,6 +8,7 @@
 					<Message> <Name>TaskAssignedToProject</Name>
 					<PropertyList>
 						<Property> <Name>ProjectId</Name> </Property>
+						<Property> <Name>ActionId</Name> </Property>
 						<Property> <Name>TaskId</Name> </Property>
 					</PropertyList>
 				</Message>
@@ -60,21 +61,18 @@
 				</Message>
 				<Message> <Name>StuffActioned</Name>
 					<PropertyList>
-						<Property>
-							<Name>StuffId</Name>
-						</Property>
-						<Property>
-							<Name>Stuff</Name>
-						</Property>
-						<Property>
-							<Name>Context</Name>
-						</Property>
-						<Property>
-							<Name>SucessfullOutcome</Name>
-						</Property>
-						<Property>
-							<Name>Notes</Name>
-						</Property>
+						<Property> <Name>ProjectId</Name> </Property>
+						<Property> <Name>ActionId</Name> </Property>
+						<Property> <Name>Status</Name> </Property>
+						<Property> <Name>StuffId</Name> </Property>
+						<Property> <Name>Description</Name> </Property>
+						<Property> <Name>Context</Name> </Property>
+						<Property> <Name>Outcome</Name> </Property>
+						<Property> <Name>NextAction</Name> </Property>
+						<Property> <Name>Time</Name> </Property>
+						<Property> <Name>Energy</Name> </Property>
+						<Property> <Name>Priority</Name> </Property>
+						<Property> <Name>Comments</Name> </Property>
 					</PropertyList>
 				</Message>
 				<Message> <Name>StuffBecameProject</Name>
@@ -129,6 +127,7 @@
 						<Property> <Name>Context</Name> </Property>
 						<Property> <Name>Outcome</Name> </Property>
 						<Property> <Name>NextAction</Name> </Property>
+						<Property> <Name>Energy</Name> </Property>
 						<Property> <Name>Time</Name> </Property>
 						<Property> <Name>Priority</Name> </Property>
 						<Property> <Name>Comments</Name> </Property>
@@ -162,6 +161,7 @@
 				</Message>
 				<Message> <Name>ContextCreated</Name>
 					<PropertyList>
+						<Property> <Name>IsActive</Name> </Property>
 						<Property> <Name>Context</Name> </Property>
 						<Property> <Name>Comments</Name> </Property>
 					</PropertyList>
@@ -208,6 +208,7 @@
 						<Property> <Name>Vision</Name> </Property>
 						<Property> <Name>IsActive</Name> </Property>
 						<Property> <Name>Folder</Name> </Property>
+						<Property> <Name>FolderId</Name> </Property>
 					</PropertyList>
 				</Message>
 					<Message> <Name>ProjectUpdated</Name>
@@ -218,6 +219,7 @@
 						<Property> <Name>Purpose</Name> </Property>
 						<Property> <Name>Vision</Name> </Property>
 						<Property> <Name>IsActive</Name> </Property>
+						<Property> <Name>FolderId</Name> </Property>
 						<Property> <Name>Folder</Name> </Property>
 					</PropertyList>
 				</Message>

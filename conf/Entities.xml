@@ -325,24 +325,6 @@
 			</PropertyList>
 			<EventList>
 				<Event>
-					<Name>ActionDone</Name>
-					<Trigger>OnUpdate DateDone</Trigger>
-					<PayLoadList type="list">
-						<PayLoad id="ActionId">ActionId</PayLoad>
-						<PayLoad id="ProjectId">ProjectId</PayLoad>
-					</PayLoadList>
-				</Event>
-				<Event>
-					<Name>ActionCanceled</Name>
-					<Trigger>OnPropertySet</Trigger>
-					<Property>DateCanceled</Property>
-					<PayLoadList type="list">
-						<PayLoad id="ActionId">ActionId</PayLoad>
-						<PayLoad id="ProjectId">ProjectId</PayLoad>
-						<PayLoad id="Date">DateCanceled</PayLoad>
-					</PayLoadList>
-				</Event>
-				<Event>
 					<Name>StuffActioned</Name>
 					<Trigger>OnCreated</Trigger>
 					<PayLoadList type="list">
@@ -359,11 +341,29 @@
 						<PayLoad id="Comments">Comments</PayLoad>
 					</PayLoadList>
 				</Event>
+				<Event>
+					<Name>ActionDone</Name>
+					<Trigger>OnUpdate DateDone</Trigger>
+					<PayLoadList type="list">
+						<PayLoad id="ActionId">{ActionId}</PayLoad>
+						<PayLoad id="ProjectId">ProjectId</PayLoad>
+					</PayLoadList>
+				</Event>
+				<Event>
+					<Name>ActionCanceled</Name>
+					<Trigger>OnPropertySet</Trigger>
+					<Property>DateCanceled</Property>
+					<PayLoadList type="list">
+						<PayLoad id="ActionId">{ActionId}</PayLoad>
+						<PayLoad id="ProjectId">ProjectId</PayLoad>
+						<PayLoad id="Date">DateCanceled</PayLoad>
+					</PayLoadList>
+				</Event>
 				<Event> <Name>TaskAssignedToProject</Name>
 					<Trigger>OnPropertyUpdated</Trigger>
 					<Property>ProjectId</Property>
 					<PayLoadList type="list">
-						<PayLoad id="ActionId">ActionId</PayLoad>
+						<PayLoad id="ActionId">{ActionId}</PayLoad>
 						<PayLoad id="ProjectId">ProjectId</PayLoad>
 					</PayLoadList>
 				</Event>
@@ -382,6 +382,7 @@
 						<PayLoad id="Comments">Comments</PayLoad>
 					</PayLoadList>
 				</Event>
+				-->
 			</EventList>
 		</Entity>
 

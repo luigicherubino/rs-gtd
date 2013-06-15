@@ -1,5 +1,5 @@
 #/bin/sh
 #Run the application
 #expect an evironment variable:
-export RS_ALPHA=~/projects/realsma-build-desktop/bin/rsAlphaServer.app/Contents/MacOS/rsAlphaServer
-$RS_ALPHA --config conf/RealSMA.conf.xml
+BINDIR=/Users/derick/projects/realsma-build-Qt_4_7_4_gcc-Debug/bin/rsAlphaServer.app/Contents/MacOS/
+$BINDIR/rsAlphaServer --config RealSMA.conf.xml --log-window --log-requests $1 $2 $3 &

@@ -2,47 +2,12 @@
 <Projection>
 	<DataComponentStore>Test Store</DataComponentStore>
 	<DataSource>GTD DB</DataSource>
-	<ViewList> <View>
-			<Name>ADMIN_VIEWS</Name>
-			<Table>ADMIN_VIEWS</Table>
-			<AcceptEventList>
-				<AcceptEvent>
-					<Event>ViewCreated</Event>
-					<Operation>CreateOrUpdate</Operation>
-					<Key>Name</Key>
-					<MapList type="list">
-						<Map id="Name">NAME</Map>
-						<Map id="Status">STATUS</Map>
-						<Map id="Created">CREATED</Map>
-						<Map id="Description">DESCRIPTION</Map>
-					</MapList>
-				</AcceptEvent>
-				<AcceptEvent>
-					<Event>ViewUpdated</Event>
-					<Operation>CreateOrUpdate</Operation>
-					<Key>Name</Key>
-					<MapList type="list">
-						<Map id="Name">NAME</Map>
-						<Map id="Status">STATUS</Map>
-						<Map id="Updated">UPDATED</Map>
-					</MapList>
-				</AcceptEvent>
-				<AcceptEvent>
-					<Event>ViewRemoved</Event>
-					<Operation>CreateOrUpdate</Operation>
-					<Key>Name</Key>
-					<MapList type="list">
-						<Map id="Name">NAME</Map>
-						<Map id="Status">STATUS</Map>
-					</MapList>
-				</AcceptEvent>
-			</AcceptEventList>
-		</View>
+	<ViewList>
 		<View> <Name>stuff_list</Name>
 			<Table>stuff_list</Table>
+			<Channel>stuff</Channel>
 			<AcceptEventList>
-				<AcceptEvent>
-					<Event>StuffCollected</Event>
+				<AcceptEvent> <Event>StuffCollected</Event>
 					<Operation>CreateOrUpdate</Operation>
 					<Key>StuffId</Key>
 					<MapList type="list">
@@ -52,8 +17,7 @@
 						<Map id="When">When</Map>
 					</MapList>
 				</AcceptEvent>
-				<AcceptEvent>
-					<Event>StuffUpdated</Event>
+				<AcceptEvent> <Event>StuffUpdated</Event>
 					<Operation>CreateOrUpdate</Operation>
 					<Key>StuffId</Key>
 					<MapList type="list">
@@ -63,48 +27,42 @@
 						<Map id="When">When</Map>
 					</MapList>
 				</AcceptEvent>
-				<AcceptEvent>
-					<Event>StuffDone</Event>
+				<AcceptEvent> <Event>StuffDone</Event>
 					<Operation>Delete</Operation>
 					<Key>StuffId</Key>
 					<MapList type="list">
 						<Map id="StuffId">stuff_id</Map>
 					</MapList>
 				</AcceptEvent>
-				<AcceptEvent>
-					<Event>StuffEliminated</Event>
+				<AcceptEvent> <Event>StuffEliminated</Event>
 					<Operation>Delete</Operation>
 					<Key>StuffId</Key>
 					<MapList type="list">
 						<Map id="StuffId">stuff_id</Map>
 					</MapList>
 				</AcceptEvent>
-					<AcceptEvent>
-					<Event>StuffIncubated</Event>
+					<AcceptEvent> <Event>StuffIncubated</Event>
 					<Operation>Delete</Operation>
 					<Key>StuffId</Key>
 					<MapList type="list">
 						<Map id="StuffId">stuff_id</Map>
 					</MapList>
 				</AcceptEvent>
-				<AcceptEvent>
-					<Event>StuffActioned</Event>
+				<AcceptEvent> <Event>StuffActioned</Event>
 					<Key>StuffId</Key>
 					<Operation>Delete</Operation>
 					<MapList type="list">
 						<Map id="StuffId">stuff_id</Map>
 					</MapList>
 				</AcceptEvent>
-				<AcceptEvent>
-					<Event>StuffBecameProject</Event>
+				<AcceptEvent> <Event>StuffBecameProject</Event>
 					<Operation>Delete</Operation>
 					<Key>StuffId</Key>
 					<MapList type="list">
 						<Map id="StuffId">stuff_id</Map>
 					</MapList>
 				</AcceptEvent>
-				<AcceptEvent>
-					<Event>StuffActionedToProject</Event>
+				<AcceptEvent> <Event>StuffActionedToProject</Event>
 					<Operation>Delete</Operation>
 					<Key>StuffId</Key>
 					<MapList type="list">
@@ -258,6 +216,7 @@
 						<Map id="IsActive">Is_Active</Map>
 					</MapList>
 				</AcceptEvent>
+				<!--
 				<AcceptEvent>
 					<Event>ProjectDeleted</Event>
 					<Operation>Delete</Operation>
@@ -266,6 +225,7 @@
 						<Map id="ProjectId">Project_Id</Map>
 					</MapList>
 				</AcceptEvent>
+				-->
 			</AcceptEventList>
 		</View>
 		<View> <Name>project_outcomes</Name>

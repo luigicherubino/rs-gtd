@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <ProcessStuff>
 	<Entity>ProcessStuff</Entity>
+	<OutputChannel>stuff</OutputChannel>
 	<ActionList>
-		<Action>
-			<Command>CollectStuff</Command>
+		<Action> <Command>CollectStuff</Command>
 			<Type>Init</Type>
 			<Id>StuffId</Id>
 			<InitMapList type="list">
@@ -12,8 +12,7 @@
 				<InitMap name="Comments">Comments</InitMap>
 			</InitMapList>
 		</Action>
-		<Action>
-			<Command>UpdateStuff</Command>
+		<Action> <Command>UpdateStuff</Command>
 			<Type>Update ProcessStuff</Type>
 			<MapList type="list">
 				<Map name="StuffId">StuffId</Map>
@@ -21,8 +20,7 @@
 				<Map name="Comments">Comments</Map>
 			</MapList>
 		</Action>
-		<Action>
-			<Command>EliminateStuff</Command>
+		<Action> <Command>EliminateStuff</Command>
 			<Type>Update ProcessStuff</Type>
 			<MapList type="list">
 				<Map name="{now}">Eliminated</Map>

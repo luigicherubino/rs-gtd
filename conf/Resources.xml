@@ -11,6 +11,11 @@
 	</FileList>
 
 	<ResourceList>
+		<Resource> <Name>/runner</Name>
+			<Title>Runner</Title>
+			<Type>WebService</Type>
+			<SubType>Runner</SubType>
+		</Resource>
 		<Resource> <Name>/</Name>
 			<Type>WebService</Type>
 			<Template>home.html</Template>

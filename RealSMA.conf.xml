@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<RealSMA>
+  <RuntimesList type="list">
+    <Runtimes name="$PWD/conf/Component.xml"/>
+  </RuntimesList>
+</RealSMA>
